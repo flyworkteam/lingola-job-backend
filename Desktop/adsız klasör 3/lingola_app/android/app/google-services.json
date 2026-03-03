@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "542145601165",
+    "project_id": "lingola-backend",
+    "storage_bucket": "lingola-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542145601165:android:3060efea19f6f4e0ae4cc4",
+        "android_client_info": {
+          "package_name": "com.flywork.lingolajobapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542145601165-hms1i8j6c4dbb4vmghi9s0jfojm7t962.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxWRYeCkkQLOlHlNhATayHRluKZuyVRBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542145601165-hms1i8j6c4dbb4vmghi9s0jfojm7t962.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,6 +6,23 @@ const pool = require("../config/db");
 const { success, validationError, serverError } = require("../lib/response");
 const { validate } = require("../lib/validate");
 
+// GET /api/user-answers — giriş yapmış kullanıcının cevaplarını listele (kontrol için)
+router.get("/", authMiddleware, loadUser, async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, user_id, word_id, user_answer, is_correct, question_type, answered_at
+       FROM user_answers
+       WHERE user_id = $1
+       ORDER BY answered_at DESC
+       LIMIT 100`,
+      [req.userId]
+    );
+    return success(res, { answers: result.rows });
+  } catch (err) {
+    return serverError(res, err);
+  }
+});
+
 // POST /api/user-answers — cevap kaydet (auth + loadUser gerekli)
 // Body: { word_id, user_answer?, is_correct, question_type? }
 router.post(
