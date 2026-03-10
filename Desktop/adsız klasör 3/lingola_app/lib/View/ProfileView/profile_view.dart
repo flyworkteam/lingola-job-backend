@@ -1,10 +1,15 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/Repositories/user_repository.dart';
 import 'package:lingola_app/Services/auth_service.dart';
+import 'package:lingola_app/src/config/app_prefs.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/radius.dart';
 import 'package:lingola_app/src/theme/spacing.dart';
@@ -17,6 +22,7 @@ class ProfileScreen extends StatefulWidget {
     super.key,
     this.userName = 'Jhon Doe',
     this.userEmail = 'jhon@gmail.com',
+    this.totalXp = 0,
     this.isPremium = false,
     this.onUserNameChanged,
     this.onBackTap,
@@ -25,6 +31,7 @@ class ProfileScreen extends StatefulWidget {
 
   final String userName;
   final String userEmail;
+  final int totalXp;
   final bool isPremium;
   /// Profil ayarlarından ad güncellendiğinde MainScreen state'ini güncellemek için.
   final ValueChanged<String>? onUserNameChanged;
@@ -39,11 +46,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _notificationsEnabled = true;
   late String _userName;
   final UserRepository _userRepository = UserRepository();
+  File? _avatarFile;
+
+  static const String _keyProfileAvatar = 'profile_avatar_path';
 
   @override
   void initState() {
     super.initState();
     _userName = widget.userName;
+    _loadAvatar();
   }
 
   @override
@@ -52,8 +63,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (oldWidget.userName != widget.userName) _userName = widget.userName;
   }
 
+  Future<void> _loadAvatar() async {
+    final prefs = await SharedPreferences.getInstance();
+    final path = prefs.getString(_keyProfileAvatar);
+    File? file;
+    if (path != null && path.isNotEmpty) {
+      final f = File(path);
+      if (await f.exists()) {
+        file = f;
+      }
+    }
+    if (!mounted) return;
+    setState(() => _avatarFile = file);
+  }
+
   void _onSignOutConfirmed() async {
     await AuthService.instance.signOut();
+    await AppPrefs.clearOnboardingCompleted();
     if (!mounted) return;
     context.go(AppPaths.onboarding);
   }
@@ -94,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   _buildMenuList(context),
                   const SizedBox(height: AppSpacing.xl),
                   Text(
-                    'version 2.1.0',
+                    context.tr('profile.version'),
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
                       color: AppColors.onSurfaceVariant,
@@ -143,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(width: AppSpacing.sm),
           Text(
-            'Profile',
+            context.tr('profile.title'),
             style: AppTypography.titleLarge.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -183,12 +209,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
           child: ClipOval(
-            child: Image.asset(
-              'assets/dummy/image 2.png',
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
+            child: _avatarFile != null
+                ? Image.file(
+                    _avatarFile!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/dummy/image 2.png',
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
         const SizedBox(height: AppSpacing.md),
@@ -202,30 +235,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         const SizedBox(height: 4),
         Text(
-          widget.userEmail,
+          AuthService.instance.currentUser?.email ?? widget.userEmail,
           style: AppTypography.bodySmall.copyWith(
             color: AppColors.onSurfaceVariant,
             fontSize: 14,
           ),
         ),
         const SizedBox(height: AppSpacing.sm),
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.lg,
-            vertical: AppSpacing.xs,
-          ),
-          decoration: BoxDecoration(
-            color: const Color(0xFF9E9E9E).withValues(alpha: 0.35),
-            borderRadius: BorderRadius.circular(AppRadius.xl),
-          ),
-          child: Text(
-            widget.isPremium ? 'Premium' : 'Free',
-            style: AppTypography.labelLarge.copyWith(
-              color: const Color(0xFF5C5C5C),
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xFF9E9E9E).withValues(alpha: 0.35),
+                borderRadius: BorderRadius.circular(AppRadius.xl),
+              ),
+              child: Text(
+                widget.isPremium ? context.tr('profile.premium') : context.tr('profile.free'),
+                style: AppTypography.labelLarge.copyWith(
+                  color: const Color(0xFF5C5C5C),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+              ),
             ),
-          ),
+            const SizedBox(width: AppSpacing.md),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.primaryBrand.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(AppRadius.xl),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '${widget.totalXp}',
+                    style: AppTypography.labelLarge.copyWith(
+                      color: AppColors.primaryBrand,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    context.tr('profile.xp'),
+                    style: AppTypography.labelLarge.copyWith(
+                      color: AppColors.primaryBrand,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -243,16 +314,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => const Center(
+      builder: (ctx) => Center(
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Backend test ediliyor...'),
+                const CircularProgressIndicator(),
+                const SizedBox(height: 16),
+                Text(context.tr('profile.backend_testing')),
               ],
             ),
           ),
@@ -265,18 +336,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(result.isOk ? 'Backend OK' : 'Backend Hata'),
+        title: Text(result.isOk ? context.tr('profile.backend_ok') : context.tr('profile.backend_error')),
         content: SingleChildScrollView(
           child: Text(
             result.isOk
                 ? (result.data ?? '')
-                : (result.error ?? 'Bilinmeyen hata'),
+                : (result.error ?? context.tr('profile.unknown_error')),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Tamam'),
+            child: Text(context.tr('common.ok')),
           ),
         ],
       ),
@@ -293,7 +364,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/nav_profil.svg',
-          label: 'Profile Settings',
+          label: context.tr('profile.profile_settings'),
           onTap: () async {
             final result = await context.push<ProfileSettingsResult?>(
               AppPaths.profileSettings,
@@ -302,38 +373,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (result != null && mounted) {
               setState(() => _userName = result.name);
               widget.onUserNameChanged?.call(result.name);
+              // Profil fotoğrafı değişmiş olabilir; tekrar yükle.
+              await _loadAvatar();
             }
           },
         ),
         _ProfileMenuItemWithSwitch(
           iconAsset: 'assets/icons/icon_notifications_list.svg',
-          label: 'Notifications',
+          label: context.tr('profile.notifications'),
           value: _notificationsEnabled,
           onChanged: (v) => setState(() => _notificationsEnabled = v),
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_premium.svg',
-          label: 'Premium',
-          onTap: () {},
+          label: context.tr('profile.premium_menu'),
+          onTap: () => context.push(AppPaths.premium),
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_share.svg',
-          label: 'Share with Friend',
+          label: context.tr('profile.share_with_friend'),
           onTap: () {},
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_faq.svg',
-          label: 'F.A.Q.',
+          label: context.tr('profile.faq'),
           onTap: () => context.push(AppPaths.faq),
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_rate.svg',
-          label: 'Rate Us',
+          label: context.tr('profile.rate_us'),
           onTap: () {},
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_faq.svg',
-          label: 'Backend Test',
+          label: context.tr('profile.backend_test'),
           onTap: () => _testBackend(context),
         ),
         Divider(
@@ -343,7 +416,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         _ProfileMenuItem(
           iconAsset: 'assets/icons/icon_signout.svg',
-          label: 'Sign Out',
+          label: context.tr('profile.sign_out'),
           showArrow: false,
           onTap: () => _showSignOutDialog(context),
         ),
@@ -376,7 +449,7 @@ class _SignOutDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Are you sure you want to log out of your account?',
+              context.tr('profile.sign_out_confirm'),
               textAlign: TextAlign.center,
               style: AppTypography.titleLarge.copyWith(
                 color: const Color(0xFF000000),
@@ -399,7 +472,7 @@ class _SignOutDialog extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Cancel',
+                      context.tr('common.cancel'),
                       style: AppTypography.labelLarge.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
@@ -423,7 +496,7 @@ class _SignOutDialog extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Sign Out',
+                      context.tr('profile.sign_out'),
                       style: AppTypography.labelLarge.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,

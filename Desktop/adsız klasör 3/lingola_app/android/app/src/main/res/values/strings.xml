@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Facebook Login: App ID aşağıda. Client token Facebook → Settings → Basic → "Client token" (Show) -->
+    <string name="facebook_app_id">2197501337662982</string>
+    <string name="facebook_client_token">818d41de630753a948abc63c2db1b4b6</string>
+</resources>

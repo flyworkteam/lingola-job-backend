@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,9 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lingola_app/Models/daily_test_question.dart';
 import 'package:lingola_app/Models/word_item.dart';
 import 'package:lingola_app/Riverpod/Providers/all_providers.dart';
+import 'package:lingola_app/Services/word_database_service.dart';
+import 'package:lingola_app/Services/word_services.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/typography.dart';
+import 'package:lingola_app/src/utils/user_level.dart';
 import 'package:lingola_app/src/widgets/word_card_buttons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DailyTestScreen extends ConsumerStatefulWidget {
   const DailyTestScreen({
@@ -38,6 +43,11 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
   String? _errorMessage;
   int? _selectedIndex;
   bool _showResult = false;
+  int _correctCount = 0;
+  int _xpEarnedThisSession = 0;
+
+  static const int _xpPerCorrect = 10;
+  static const String _keyProfileLevel = 'profile_level';
 
   @override
   void initState() {
@@ -60,29 +70,39 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
       _loading = true;
       _errorMessage = null;
     });
-    final wordsResult = await ref.read(wordRepositoryProvider).getWords(
-      learningTrackId: widget.trackId,
-    );
-    if (!mounted) return;
-    if (!wordsResult.isOk) {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final userLevel = prefs.getString(_keyProfileLevel);
+
+      // Kelimeleri backend yerine local veritabanından (assets/words.json -> SQLite) al.
+      final localeCode = context.locale.languageCode;
+      var rawList = await WordDatabaseService.getWords();
+      rawList = await WordService.enrichWordsWithTranslations(rawList, localeCode: localeCode);
+
+      final words = rawList.map((e) => WordItem.fromJson(e)).toList();
+      final filtered = words
+          .where((w) => UserLevel.isAllowedForUser(w.level, userLevel))
+          .toList();
+
+      final questions = DailyTestQuestion.fromWords(filtered, maxQuestions: 10);
+      if (!mounted) return;
+      setState(() {
+        _questions = questions;
+        _loading = false;
+        _errorMessage = questions.isEmpty ? 'daily_test.no_words_min'.tr() : null;
+        _currentIndex = 0;
+        _selectedIndex = null;
+        _showResult = false;
+        _correctCount = 0;
+        _xpEarnedThisSession = 0;
+      });
+    } catch (e) {
+      if (!mounted) return;
       setState(() {
         _loading = false;
-        _errorMessage = wordsResult.error ?? 'Kelime listesi alınamadı';
+        _errorMessage = '${'daily_test.load_error'.tr()}: $e';
       });
-      return;
     }
-    final rawList = wordsResult.data ?? [];
-    final words = rawList.map((e) => WordItem.fromJson(e)).toList();
-    final questions = DailyTestQuestion.fromWords(words, maxQuestions: 10);
-    if (!mounted) return;
-    setState(() {
-      _questions = questions;
-      _loading = false;
-      _errorMessage = questions.isEmpty ? 'Test için en az 4 kelime gerekli.' : null;
-      _currentIndex = 0;
-      _selectedIndex = null;
-      _showResult = false;
-    });
   }
 
   void _onOptionTap(int i) {
@@ -93,13 +113,23 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
     setState(() {
       _selectedIndex = i;
       _showResult = true;
+      if (isCorrect) {
+        _correctCount++;
+        _xpEarnedThisSession += _xpPerCorrect;
+      }
     });
-    ref.read(userRepositoryProvider).submitUserAnswer(
-      wordId: question.wordId,
-      userAnswer: selectedAnswer,
-      isCorrect: isCorrect,
-      questionType: widget.questionType,
-    ).ignore();
+    if (isCorrect) {
+      ref.read(xpProvider).addXp(_xpPerCorrect);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('+$_xpPerCorrect XP'),
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 1),
+          ),
+        );
+      }
+    }
   }
 
   void _onNext() {
@@ -110,6 +140,17 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
         _showResult = false;
       });
     } else {
+      if (_xpEarnedThisSession > 0 || _correctCount > 0) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'daily_test.test_complete'.tr(args: ['$_correctCount', '$_xpEarnedThisSession']),
+            ),
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
       Navigator.of(context).pop();
     }
   }
@@ -140,7 +181,7 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
         ),
         titleSpacing: 4,
         title: Text(
-          'Test',
+          'learn.daily_test'.tr(),
           style: GoogleFonts.quicksand(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -177,21 +218,21 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
           Text(
             _errorMessage!,
             textAlign: TextAlign.center,
-            style: AppTypography.bodyMedium.copyWith(color: AppColors.error),
+            style: AppTypography.bodySmall.copyWith(color: AppColors.error),
           ),
           const SizedBox(height: 16),
           TextButton(
             onPressed: _loadQuestions,
-            child: const Text('Tekrar dene'),
+            child: Text('daily_test.retry'.tr()),
           ),
         ],
       );
     }
     if (_questions.isEmpty) {
       return Text(
-        'Test için yeterli kelime yok. Önce bir track seçin veya kelime ekleyin.',
+        'daily_test.no_words_empty'.tr(),
         textAlign: TextAlign.center,
-        style: AppTypography.bodyMedium,
+        style: AppTypography.bodySmall,
       );
     }
     return Column(
@@ -203,15 +244,17 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BackNextButton(
-              label: 'Back',
+              label: 'common.back'.tr(),
               isPrimary: false,
               onTap: () => Navigator.of(context).pop(),
+              isBack: true,
             ),
             const SizedBox(width: 16),
             BackNextButton(
-              label: _currentIndex + 1 < _questions.length ? 'Next' : 'Bitir',
+              label: _currentIndex + 1 < _questions.length ? 'common.next'.tr() : 'common.done'.tr(),
               isPrimary: true,
               onTap: _showResult ? _onNext : () {},
+              isBack: false,
             ),
           ],
         ),
@@ -245,7 +288,7 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
           children: [
             const SizedBox(height: 28),
             Text(
-              'Çevirisi nedir?',
+              'fill blank'.tr(),
               style: GoogleFonts.quicksand(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -254,9 +297,9 @@ class _DailyTestScreenState extends ConsumerState<DailyTestScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              question.word,
+              question.sentence,
               style: GoogleFonts.quicksand(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.w700,
                 color: AppColors.onSurface,
               ),

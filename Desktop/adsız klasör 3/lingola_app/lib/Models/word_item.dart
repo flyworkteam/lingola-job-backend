@@ -5,6 +5,9 @@ class WordItem {
     required this.learningTrackId,
     required this.word,
     required this.translation,
+    this.phonetic,
+    this.exampleEn,
+    this.exampleTr,
     this.level,
     this.sortOrder,
   });
@@ -13,15 +16,25 @@ class WordItem {
   final int learningTrackId;
   final String word;
   final String translation;
+  /// IPA okunuşu, örn. /ˈmeɪnli/
+  final String? phonetic;
+  /// Örnek cümle (İngilizce)
+  final String? exampleEn;
+  /// Örnek cümle çevirisi (Türkçe)
+  final String? exampleTr;
   final dynamic level;
   final dynamic sortOrder;
 
   factory WordItem.fromJson(Map<String, dynamic> json) {
+    final id = _intFrom(json['id']) ?? 0;
     return WordItem(
-      id: _intFrom(json['id']),
+      id: id,
       learningTrackId: _intFrom(json['learning_track_id']) ?? 0,
       word: _stringFrom(json['word']) ?? '',
       translation: _stringFrom(json['translation']) ?? '',
+      phonetic: _stringFrom(json['phonetic']),
+      exampleEn: _stringFrom(json['example_en']) ?? _stringFrom(json['exampleEn']),
+      exampleTr: _stringFrom(json['example_tr']) ?? _stringFrom(json['exampleTr']),
       level: json['level'],
       sortOrder: json['sort_order'],
     );

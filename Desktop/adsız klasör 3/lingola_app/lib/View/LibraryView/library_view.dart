@@ -1,7 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:lingola_app/Riverpod/Controllers/all_controllers.dart';
+import 'package:lingola_app/Services/word_database_service.dart';
+import 'package:lingola_app/Services/word_services.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/radius.dart';
 import 'package:lingola_app/src/theme/spacing.dart';
@@ -31,6 +36,91 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
   final TextEditingController _searchController = TextEditingController();
   static const double _headerExpandedHeight = 200;
 
+  List<Map<String, dynamic>>? _professionalWordsLoaded;
+  bool _dictionaryLoading = true;
+  String? _selectedLanguageId;
+
+  static String _languageIdToLocale(String id) {
+    const m = {
+      'english': 'en',
+      'german': 'de',
+      'italian': 'it',
+      'french': 'fr',
+      'japanese': 'ja',
+      'spanish': 'es',
+      'russian': 'ru',
+      'turkish': 'tr',
+      'korean': 'ko',
+      'hindi': 'hi',
+      'portuguese': 'pt',
+    };
+    return m[id] ?? 'tr';
+  }
+
+  Future<void> _loadDictionaryWords() async {
+    final raw = await WordDatabaseService.getProfessionalWords();
+
+    // Kullanıcının seçtiği öğrenme dilini oku
+    final prefs = await SharedPreferences.getInstance();
+    final storedLangId = prefs.getString('profile_language');
+    final langId = storedLangId?.isNotEmpty == true ? storedLangId! : 'english';
+    final localeCode = _languageIdToLocale(langId);
+
+    // Seçilen dile göre çeviri map'ini al
+    final translationMap =
+        await WordService.getTranslationMapForLocale(localeCode);
+
+    // Kelimeleri, seçilen dile göre çeviriyle zenginleştir
+    final processed = raw
+        .where((m) => ((m['word'] as String?) ?? '').trim().isNotEmpty)
+        .map((m) {
+      final word = ((m['word'] as String?) ?? '').trim();
+      final key = word.toLowerCase();
+      final translated = (translationMap[key] ?? '').trim();
+      final updated = Map<String, dynamic>.from(m);
+      if (translated.isNotEmpty) {
+        updated['translation'] = translated;
+      }
+      return updated;
+    }).toList();
+
+    if (!mounted) return;
+    setState(() {
+      _professionalWordsLoaded = processed;
+      _selectedLanguageId = langId;
+      _dictionaryLoading = false;
+    });
+  }
+
+  List<_LibraryWordItem> get _libraryWordsFromLoaded {
+    final list = _professionalWordsLoaded;
+    if (list == null) return const [];
+    return list
+        .map((m) => _LibraryWordItem(
+              word: (m['word'] as String?)?.trim() ?? '',
+              category: (m['category'] as String?)?.trim().isNotEmpty == true
+                  ? (m['category'] as String).trim()
+                  : 'Other',
+              translation: (m['translation'] as String?)?.trim() ?? '',
+              exampleEn: (m['example'] as String?)?.trim() ?? '',
+              exampleTr: (m['example_translation'] as String?)?.trim() ?? '',
+            ))
+        .toList();
+  }
+
+  List<_DictionaryWordItem> get _dictionaryWords {
+    final list = _professionalWordsLoaded;
+    if (list == null) return const [];
+    return list
+        .map((m) => _DictionaryWordItem(
+              word: (m['word'] as String?)?.trim() ?? '',
+              translation: (m['translation'] as String?)?.trim() ?? '',
+              exampleEn: (m['example'] as String?)?.trim() ?? '',
+              exampleTr: (m['example_translation'] as String?)?.trim() ?? '',
+            ))
+        .toList();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +129,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
           .read(libraryControllerProvider.notifier)
           .setSearchQuery(_searchController.text);
     });
+    _loadDictionaryWords();
     if (widget.initialTabIndex != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
@@ -90,24 +181,27 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                 backgroundColor: const Color(0xFFF2F5FC),
                 surfaceTintColor: Colors.transparent,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _buildHeader(),
-                        const SizedBox(height: AppSpacing.lg),
-                        Row(
-                          children: [
-                            Expanded(child: _buildSearchInput()),
-                            const SizedBox(width: AppSpacing.sm),
-                            _buildFilterButton(),
-                          ],
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                        _buildTabButtons(),
-                        const SizedBox(height: AppSpacing.lg),
-                      ],
+                  background: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildHeader(),
+                          const SizedBox(height: AppSpacing.lg),
+                          Row(
+                            children: [
+                              Expanded(child: _buildSearchInput()),
+                              const SizedBox(width: AppSpacing.sm),
+                              _buildFilterButton(),
+                            ],
+                          ),
+                          const SizedBox(height: AppSpacing.lg),
+                          _buildTabButtons(),
+                          const SizedBox(height: AppSpacing.lg),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -159,7 +253,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
           ),
           const SizedBox(width: AppSpacing.sm),
           Text(
-            'Library',
+            context.tr('library.title'),
             style: AppTypography.titleLarge.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -167,6 +261,36 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
             ),
           ),
           const Spacer(),
+          if (_selectedLanguageId != null)
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.primaryBrand.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.language,
+                    size: 16,
+                    color: AppColors.primaryBrand,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    context.tr('languages.${_selectedLanguageId!}'),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.primaryBrand,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );
@@ -186,7 +310,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: 'Search Word...',
+          hintText: context.tr('library.search_hint'),
           hintStyle: AppTypography.bodySmall.copyWith(
             color: AppColors.onSurfaceVariant.withValues(alpha: 0.6),
           ),
@@ -265,7 +389,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
       children: [
         Expanded(
           child: _buildTabButton(
-            label: 'Library',
+            label: context.tr('library.library_tab'),
             isSelected: state.selectedTabIndex == 0,
             onTap: () =>
                 ref.read(libraryControllerProvider.notifier).setTab(0),
@@ -274,7 +398,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: _buildTabButton(
-            label: 'Dictionary',
+            label: context.tr('library.dictionary_tab'),
             isSelected: state.selectedTabIndex == 1,
             onTap: () =>
                 ref.read(libraryControllerProvider.notifier).setTab(1),
@@ -327,30 +451,11 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
     );
   }
 
-  static const List<_LibraryWordItem> _libraryWords = [
-    _LibraryWordItem(word: 'Arbitrage', category: 'Finance', translation: 'Arbitraj'),
-    _LibraryWordItem(word: 'Synergy', category: 'Business', translation: 'Sinerji'),
-    _LibraryWordItem(word: 'Scalability', category: 'Technology', translation: 'Ölçeklenebilirlik'),
-    _LibraryWordItem(word: 'Heuristic', category: 'Psychology', translation: 'Heuristic'),
-  ];
-
-  static const List<_DictionaryWordItem> _dictionaryWords = [
-    _DictionaryWordItem(word: 'Acquisition', translation: 'Satın alma, devralma'),
-    _DictionaryWordItem(word: 'Agenda', translation: 'Gündem, yapılacaklar listesi'),
-    _DictionaryWordItem(word: 'Allocate', translation: 'Tahsis etmek, ayırmak'),
-    _DictionaryWordItem(word: 'Asset', translation: 'Varlık, kıymet'),
-    _DictionaryWordItem(word: 'Appraisal', translation: 'Değerleme, kıymet takdiri'),
-    _DictionaryWordItem(word: 'Audit', translation: 'Denetim, teftiş'),
-    _DictionaryWordItem(word: 'Arbitrage', translation: 'Arbitraj'),
-    _DictionaryWordItem(word: 'Synergy', translation: 'Sinerji'),
-    _DictionaryWordItem(word: 'Scalability', translation: 'Ölçeklenebilirlik'),
-    _DictionaryWordItem(word: 'Heuristic', translation: 'Heuristic'),
-  ];
-
   List<_LibraryWordItem> _filteredWords(LibraryState state) {
+    final libraryWords = _libraryWordsFromLoaded;
     final fromStatic = state.selectedFilterIds.isEmpty
-        ? _libraryWords
-        : _libraryWords
+        ? libraryWords
+        : libraryWords
             .where((item) => state.selectedFilterIds.contains(item.category))
             .toList();
     final showSaved = state.selectedFilterIds.isEmpty ||
@@ -358,29 +463,28 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
     if (!showSaved) return fromStatic;
     final fromDictionary = state.favoritedDictionaryWords.map((word) {
       final match = _dictionaryWords.where((e) => e.word == word).toList();
-      final translation = match.isEmpty ? '' : match.first.translation;
+      final first = match.isEmpty ? null : match.first;
       return _LibraryWordItem(
         word: word,
         category: 'Saved',
-        translation: translation,
+        translation: first?.translation ?? '',
+        exampleEn: first?.exampleEn ?? '',
+        exampleTr: first?.exampleTr ?? '',
       );
     }).toList();
     return [...fromStatic, ...fromDictionary];
   }
 
   Widget _buildLibrarySliverList(LibraryState state) {
+    if (_professionalWordsLoaded == null) {
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
     final words = _filteredWords(state);
     return SliverList(
       delegate: SliverChildListDelegate([
-        Text(
-          '${words.length} Words',
-          style: AppTypography.title.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: AppColors.onSurface,
-          ),
-        ),
-        const SizedBox(height: AppSpacing.lg),
         ...words.map((item) => Padding(
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
             child: _LibraryWordCard(
@@ -402,28 +506,45 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
   }
 
   List<_DictionaryWordItem> _filteredDictionaryWords(LibraryState state) {
+    final list = _professionalWordsLoaded;
+    if (list == null) return const [];
+    var filtered = list;
+    if (state.selectedFilterIds.isNotEmpty) {
+      filtered = filtered
+          .where((m) =>
+              state.selectedFilterIds
+                  .contains((m['category'] as String?)?.trim() ?? ''))
+          .toList();
+    }
     final q = state.searchQuery.trim().toLowerCase();
-    if (q.isEmpty) return _dictionaryWords;
-    return _dictionaryWords
-        .where((item) =>
-            item.word.toLowerCase().contains(q) ||
-            item.translation.toLowerCase().contains(q))
+    if (q.isNotEmpty) {
+      filtered = filtered.where((m) {
+        final word = (m['word'] as String?) ?? '';
+        final translation = (m['translation'] as String?) ?? '';
+        return word.toLowerCase().contains(q) ||
+            translation.toLowerCase().contains(q);
+      }).toList();
+    }
+    return filtered
+        .map((m) => _DictionaryWordItem(
+              word: (m['word'] as String?)?.trim() ?? '',
+              translation: (m['translation'] as String?)?.trim() ?? '',
+              exampleEn: (m['example'] as String?)?.trim() ?? '',
+              exampleTr: (m['example_translation'] as String?)?.trim() ?? '',
+            ))
         .toList();
   }
 
   Widget _buildDictionarySliverList(LibraryState state) {
+    if (_dictionaryLoading) {
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
     final words = _filteredDictionaryWords(state);
     return SliverList(
       delegate: SliverChildListDelegate([
-        Text(
-          '${words.length} Words',
-          style: AppTypography.title.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: AppColors.onSurface,
-          ),
-        ),
-        const SizedBox(height: AppSpacing.lg),
         ...words.map((item) => Padding(
           padding: const EdgeInsets.only(bottom: AppSpacing.md),
           child: _DictionaryWordCard(
@@ -447,9 +568,13 @@ class _DictionaryWordItem {
   const _DictionaryWordItem({
     required this.word,
     required this.translation,
+    this.exampleEn = '',
+    this.exampleTr = '',
   });
   final String word;
   final String translation;
+  final String exampleEn;
+  final String exampleTr;
 }
 
 class _LibraryWordItem {
@@ -457,10 +582,14 @@ class _LibraryWordItem {
     required this.word,
     required this.category,
     required this.translation,
+    this.exampleEn = '',
+    this.exampleTr = '',
   });
   final String word;
   final String category;
   final String translation;
+  final String exampleEn;
+  final String exampleTr;
 }
 
 /// Beyaz kart: kelime, kategori etiketi, çeviri, ses ve yıldız ikonu.
@@ -526,7 +655,7 @@ class _LibraryWordCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        item.category,
+                        item.category == 'Other' ? context.tr('library.other') : item.category,
                         style: AppTypography.label.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -544,6 +673,31 @@ class _LibraryWordCard extends StatelessWidget {
                     color: AppColors.onSurfaceVariant,
                   ),
                 ),
+                if (item.exampleEn.trim().isNotEmpty ||
+                    item.exampleTr.trim().isNotEmpty) ...[
+                  const SizedBox(height: 10),
+                  if (item.exampleEn.trim().isNotEmpty)
+                    Text(
+                      '"${item.exampleEn.trim()}"',
+                      style: AppTypography.bodySmall.copyWith(
+                        fontSize: 13,
+                        fontStyle: FontStyle.italic,
+                        color: AppColors.onSurfaceVariant,
+                      ),
+                    ),
+                  if (item.exampleTr.trim().isNotEmpty) ...[
+                    if (item.exampleEn.trim().isNotEmpty)
+                      const SizedBox(height: 4),
+                    Text(
+                      item.exampleTr.trim(),
+                      style: AppTypography.bodySmall.copyWith(
+                        fontSize: 12,
+                        color: AppColors.onSurfaceVariant
+                            .withValues(alpha: 0.9),
+                      ),
+                    ),
+                  ],
+                ],
               ],
             ),
           ),
@@ -581,7 +735,7 @@ class _LibraryWordCard extends StatelessWidget {
   }
 }
 
-/// Dictionary kelime kartı: kelime, çeviri, ses ve yıldız ikonu.
+/// Dictionary kelime kartı: kelime, çeviri, örnek cümle, ses ve yıldız ikonu.
 class _DictionaryWordCard extends StatelessWidget {
   const _DictionaryWordCard({
     required this.item,
@@ -595,6 +749,8 @@ class _DictionaryWordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasExample =
+        item.exampleEn.trim().isNotEmpty || item.exampleTr.trim().isNotEmpty;
     return Container(
       padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
@@ -625,6 +781,30 @@ class _DictionaryWordCard extends StatelessWidget {
                     color: AppColors.onSurfaceVariant,
                   ),
                 ),
+                if (hasExample) ...[
+                  const SizedBox(height: 10),
+                  if (item.exampleEn.trim().isNotEmpty)
+                    Text(
+                      '"${item.exampleEn.trim()}"',
+                      style: AppTypography.bodySmall.copyWith(
+                        fontSize: 13,
+                        fontStyle: FontStyle.italic,
+                        color: AppColors.onSurfaceVariant,
+                      ),
+                    ),
+                  if (item.exampleTr.trim().isNotEmpty) ...[
+                    if (item.exampleEn.trim().isNotEmpty)
+                      const SizedBox(height: 4),
+                    Text(
+                      item.exampleTr.trim(),
+                      style: AppTypography.bodySmall.copyWith(
+                        fontSize: 12,
+                        color: AppColors.onSurfaceVariant
+                            .withValues(alpha: 0.9),
+                      ),
+                    ),
+                  ],
+                ],
               ],
             ),
           ),
@@ -686,7 +866,7 @@ class _LibraryFilterBottomSheet extends StatefulWidget {
 
 class _LibraryFilterBottomSheetState extends State<_LibraryFilterBottomSheet> {
   static const List<String> _filterCategories = [
-    'Saved',
+    'Academic',
     'Psychology',
     'Business',
     'Finance',
@@ -696,6 +876,18 @@ class _LibraryFilterBottomSheetState extends State<_LibraryFilterBottomSheet> {
     'Medicine',
     'Legal',
   ];
+
+  static const Map<String, String> _filterCategoryKeys = {
+    'Academic': 'library.filter_academic',
+    'Psychology': 'library.filter_psychology',
+    'Business': 'library.filter_business',
+    'Finance': 'library.filter_finance',
+    'Technology': 'library.filter_technology',
+    'Marketing': 'library.filter_marketing',
+    'Engineering': 'library.filter_engineering',
+    'Medicine': 'library.filter_medicine',
+    'Legal': 'library.filter_legal',
+  };
 
   late Set<String> _selectedIds;
 
@@ -769,7 +961,7 @@ class _LibraryFilterBottomSheetState extends State<_LibraryFilterBottomSheet> {
                         ),
                       ),
                       child: Text(
-                        category,
+                        context.tr(_filterCategoryKeys[category] ?? category),
                         style: AppTypography.labelLarge.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -796,7 +988,7 @@ class _LibraryFilterBottomSheetState extends State<_LibraryFilterBottomSheet> {
                     elevation: 0,
                   ),
                   child: Text(
-                    'Save',
+                    context.tr('common.save'),
                     style: AppTypography.labelLarge.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,

@@ -1,0 +1,8 @@
+{
+  "name": "lingola-app-tools",
+  "private": true,
+  "description": "Çeviri doldurma script'i için (API anahtarı gerekmez)",
+  "dependencies": {
+    "translate": "^1.4.0"
+  }
+}

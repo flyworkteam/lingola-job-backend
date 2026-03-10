@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:lingola_app/src/config/app_prefs.dart';
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/radius.dart';
@@ -502,7 +503,11 @@ class _Onboarding7ScreenState extends State<Onboarding7Screen>
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: () => context.go(AppPaths.home),
+                        onTap: () async {
+                          await AppPrefs.setOnboardingCompleted();
+                          if (!context.mounted) return;
+                          context.go(AppPaths.home);
+                        },
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                         child: Container(
                           width: double.infinity,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -131,26 +132,28 @@ class WordCardSaveWordButton extends StatelessWidget {
                   height: _btnHeight,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/icons/icon_heart_save.svg',
-                            width: 20,
-                            height: 18,
-                            fit: BoxFit.contain,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Save Word',
-                            style: AppTypography.labelLarge.copyWith(
-                              color: Colors.white,
-                              fontSize: 14,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/icon_heart_save.svg',
+                              width: 20,
+                              height: 18,
+                              fit: BoxFit.contain,
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 8),
+                            Text(
+                              'word_practice.save_word'.tr(),
+                              style: AppTypography.labelLarge.copyWith(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -222,21 +225,26 @@ class WordCardListenButton extends StatelessWidget {
                   onTap: onTap,
                   borderRadius: BorderRadius.circular(_radius),
                   child: Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.volume_up, color: Color(0xFF0575E6), size: 28),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Listen',
-                          style: AppTypography.labelLarge.copyWith(
-                            color: const Color(0xFF0575E6),
-                            fontSize: 19,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.volume_up, color: Color(0xFF0575E6), size: 28),
+                            const SizedBox(width: 10),
+                            Text(
+                              'word_practice.listen'.tr(),
+                              style: AppTypography.labelLarge.copyWith(
+                                color: const Color(0xFF0575E6),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
@@ -257,11 +265,14 @@ class BackNextButton extends StatelessWidget {
     required this.label,
     required this.isPrimary,
     required this.onTap,
+    this.isBack,
   });
 
   final String label;
   final bool isPrimary;
   final VoidCallback onTap;
+  /// Çeviri kullanıldığında label "Back" olmayacağı için stil için kullanılır.
+  final bool? isBack;
 
   static const Color _blue = Color(0xFF0575E6);
   static const double _width = 155;
@@ -272,10 +283,10 @@ class BackNextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isBack = label == 'Back';
-    final arrowColor = isBack ? Colors.black : Colors.white;
-    final textColor = isBack ? Colors.black : Colors.white;
-    final bgColor = isBack ? _backBg : _blue;
+    final back = isBack ?? label == 'Back';
+    final arrowColor = back ? Colors.black : Colors.white;
+    final textColor = back ? Colors.black : Colors.white;
+    final bgColor = back ? _backBg : _blue;
 
     final arrowWidget = SvgPicture.asset(
       'assets/icons/icon_arrow_back_next.svg',
@@ -298,7 +309,7 @@ class BackNextButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (isBack) ...[
+              if (back) ...[
                 arrowWidget,
                 const SizedBox(width: 10),
               ],
@@ -310,7 +321,7 @@ class BackNextButton extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              if (label == 'Next') ...[
+              if (!back) ...[
                 const SizedBox(width: 10),
                 Transform.scale(scaleX: -1, child: arrowWidget),
               ],

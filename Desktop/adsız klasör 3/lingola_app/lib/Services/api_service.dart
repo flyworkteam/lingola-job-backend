@@ -4,8 +4,14 @@ import 'package:http/http.dart' as http;
 
 import 'package:lingola_app/Services/auth_service.dart';
 
-/// Backend API base URL. Geliştirme için local IP; production'da değiştir.
-const String kBaseApiUrl = 'http://192.168.1.8:3000';
+/// Backend API base URL.
+/// Geliştirme: Backend'in çalıştığı bilgisayarın IP'si (örn. 192.168.1.8).
+/// Emülatör: Android için http://10.0.2.2:3000, iOS simülatör için http://127.0.0.1:3000
+/// Geçersiz kılmak için: flutter run --dart-define=API_BASE_URL=http://SENIN_IP:3000
+const String kBaseApiUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: 'http://192.168.1.8:3000',
+);
 
 /// Backend API istekleri. Token otomatik eklenir.
 class ApiService {
@@ -40,6 +46,32 @@ class ApiService {
       return ApiResult.fail(msg ?? 'HTTP ${response.statusCode}');
     } catch (_) {
       return ApiResult.fail('HTTP ${response.statusCode}: ${response.body}');
+    }
+  }
+
+  /// POST /api/users/me/activity — uygulama açıldığında / ön plana geldiğinde çağrılır.
+  /// last_activity_at güncellenir; [fcmToken] verilirse backend'e kaydedilir (1 gün girmeyenlere bildirim için).
+  Future<ApiResult<Map<String, dynamic>>> postUserActivity({String? fcmToken}) async {
+    final authErr = await _requireAuth();
+    if (authErr != null) return ApiResult.fail(authErr);
+    try {
+      final url = Uri.parse('$kBaseApiUrl/api/users/me/activity');
+      final body = <String, dynamic>{};
+      if (fcmToken != null && fcmToken.isNotEmpty) body['fcm_token'] = fcmToken;
+      final response = await http.post(
+        url,
+        headers: await _authHeaders(),
+        body: jsonEncode(body),
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        final data = jsonDecode(response.body) as Map<String, dynamic>?;
+        return ApiResult.ok(data?['data'] ?? <String, dynamic>{});
+      }
+      final body2 = response.body.isEmpty ? null : jsonDecode(response.body) as Map<String, dynamic>?;
+      final msg = body2?['error'] is Map ? (body2!['error']!['message']?.toString()) : null;
+      return ApiResult.fail(msg ?? 'HTTP ${response.statusCode}');
+    } catch (e) {
+      return ApiResult.fail('İstek hatası: $e');
     }
   }
 

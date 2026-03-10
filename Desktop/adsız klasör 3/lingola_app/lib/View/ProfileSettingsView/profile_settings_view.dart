@@ -1,7 +1,13 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/src/navigation/app_routes.dart';
@@ -32,6 +38,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   String? _selectedAppLanguage;
   String? _selectedLevel;
   String? _selectedProfession;
+  File? _avatarFile;
+
+  final ImagePicker _imagePicker = ImagePicker();
 
   static const List<_ProfileLanguage> _languages = [
     _ProfileLanguage(id: 'english', title: 'English', flagAsset: 'assets/bayrak/flag_english.svg'),
@@ -77,6 +86,27 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.initialName);
+    _loadSavedProfile();
+  }
+
+  Future<void> _loadSavedProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+    final avatarPath = prefs.getString(_keyProfileAvatar);
+    File? avatarFile;
+    if (avatarPath != null && avatarPath.isNotEmpty) {
+      final file = File(avatarPath);
+      if (await file.exists()) {
+        avatarFile = file;
+      }
+    }
+    if (!mounted) return;
+    setState(() {
+      _selectedLevel = prefs.getString(_keyProfileLevel);
+      _selectedLanguage = prefs.getString(_keyProfileLanguage);
+      _selectedAppLanguage = prefs.getString(_keyProfileAppLanguage);
+      _selectedProfession = prefs.getString(_keyProfileProfession);
+      _avatarFile = avatarFile;
+    });
   }
 
   @override
@@ -138,7 +168,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Text(
-                  'Profile Settings',
+                  context.tr('profile_settings.title'),
                   style: AppTypography.titleLarge.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -182,33 +212,38 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                       _buildTextField(
+                      context: context,
                       controller: _nameController,
-                      label: 'Full Name',
-                      hint: 'Enter your name',
+                      label: context.tr('profile_settings.full_name'),
+                      hint: context.tr('profile_settings.enter_name'),
                       keyboardType: TextInputType.name,
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     _buildSelectRow(
-                      label: 'Select Language',
-                      value: _languageTitle(_selectedLanguage),
+                      context: context,
+                      label: context.tr('profile_settings.select_language'),
+                      value: _languageTitle(context, _selectedLanguage),
                       onTap: () => _showLanguageSheet(context, (id) => setState(() => _selectedLanguage = id)),
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     _buildSelectRow(
-                      label: 'Select App Language',
-                      value: _languageTitle(_selectedAppLanguage),
+                      context: context,
+                      label: context.tr('profile_settings.select_app_language'),
+                      value: _languageTitle(context, _selectedAppLanguage),
                       onTap: () => _showLanguageSheet(context, (id) => setState(() => _selectedAppLanguage = id)),
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     _buildSelectRow(
-                      label: 'Select Your Language Level',
-                      value: _levelTitle(_selectedLevel),
+                      context: context,
+                      label: context.tr('profile_settings.select_level'),
+                      value: _levelTitle(context, _selectedLevel),
                       onTap: () => _showLevelSheet(context, (id) => setState(() => _selectedLevel = id)),
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     _buildSelectRow(
-                      label: 'Select Your Profession',
-                      value: _professionTitle(_selectedProfession),
+                      context: context,
+                      label: context.tr('profile_settings.select_profession'),
+                      value: _professionTitle(context, _selectedProfession),
                       onTap: () => _showProfessionSheet(context, (id) => setState(() => _selectedProfession = id)),
                     ),
                     const SizedBox(height: AppSpacing.xxl),
@@ -295,20 +330,20 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                           _photoDropdownOption(
                             context,
                             iconAsset: 'assets/icons/icon_photo_camera.svg',
-                            label: 'Take a Photo',
+                            label: context.tr('profile_settings.take_photo'),
                             onTap: () {
                               dismiss();
-                              // TODO: Kamera aç
+                              _pickImage(ImageSource.camera);
                             },
                           ),
                           Divider(height: 1, indent: 48, endIndent: 12, color: AppColors.onSurfaceVariant.withValues(alpha: 0.2)),
                           _photoDropdownOption(
                             context,
                             iconAsset: 'assets/icons/icon_photo_gallery.svg',
-                            label: 'Select from Gallery',
+                            label: context.tr('profile_settings.select_from_gallery'),
                             onTap: () {
                               dismiss();
-                              // TODO: Galeri aç
+                              _pickImage(ImageSource.gallery);
                             },
                           ),
                         ],
@@ -385,12 +420,19 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ],
             ),
             child: ClipOval(
-              child: Image.asset(
-                'assets/dummy/image 2.png',
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
+              child: _avatarFile != null
+                  ? Image.file(
+                      _avatarFile!,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'assets/dummy/image 2.png',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
           Positioned(
@@ -429,25 +471,25 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     );
   }
 
-  String? _languageTitle(String? id) {
+  String? _languageTitle(BuildContext context, String? id) {
     if (id == null) return null;
-    for (final l in _languages) if (l.id == id) return l.title;
-    return null;
+    return context.tr('languages.$id');
   }
 
-  String? _levelTitle(String? id) {
+  String? _levelTitle(BuildContext context, String? id) {
     if (id == null) return null;
-    for (final l in _levels) if (l.id == id) return l.title;
-    return null;
+    final key = 'profile_settings.level_$id';
+    return context.tr(key);
   }
 
-  String? _professionTitle(String? id) {
+  String? _professionTitle(BuildContext context, String? id) {
     if (id == null) return null;
-    for (final p in _professions) if (p.id == id) return p.title;
-    return null;
+    final key = 'profile_settings.profession_$id';
+    return context.tr(key);
   }
 
   Widget _buildSelectRow({
+    required BuildContext context,
     required String label,
     required String? value,
     required VoidCallback onTap,
@@ -483,7 +525,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      value ?? 'Select',
+                      value ?? context.tr('profile_settings.select'),
                       style: AppTypography.body.copyWith(
                         color: value != null
                             ? AppColors.onSurface
@@ -566,7 +608,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                             const SizedBox(width: AppSpacing.lg),
                             Expanded(
                               child: Text(
-                                lang.title,
+                                ctx.tr('languages.${lang.id}'),
                                 style: AppTypography.labelLarge.copyWith(
                                   color: AppColors.onSurface,
                                   fontSize: 16,
@@ -623,12 +665,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            level.title,
-                            style: AppTypography.labelLarge.copyWith(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                context.tr('profile_settings.level_${level.id}'),
+                                style: AppTypography.labelLarge.copyWith(
                               color: AppColors.onSurface,
                               fontSize: 16,
                             ),
@@ -691,7 +733,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                         child: Text(
-                          p.title,
+                          ctx.tr('profile_settings.profession_${p.id}'),
                           style: AppTypography.labelLarge.copyWith(
                             color: AppColors.onSurface,
                             fontSize: 16,
@@ -710,6 +752,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   }
 
   Widget _buildTextField({
+    required BuildContext context,
     required TextEditingController controller,
     required String label,
     required String hint,
@@ -788,7 +831,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
               const SizedBox(width: AppSpacing.sm),
               Text(
-                'Save',
+                context.tr('common.save'),
                 style: AppTypography.labelLarge.copyWith(
                   color: AppColors.onPrimary,
                   fontSize: 20,
@@ -851,7 +894,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
               const SizedBox(width: AppSpacing.md),
               Text(
-                'Delete Account',
+                context.tr('profile_settings.delete_account'),
                 style: GoogleFonts.nunitoSans(
                   color: const Color(0xFF000000),
                   fontWeight: FontWeight.w700,
@@ -871,13 +914,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   static const String _keyProfileAppLanguage = 'profile_app_language';
   static const String _keyProfileLevel = 'profile_level';
   static const String _keyProfileProfession = 'profile_profession';
+  static const String _keyProfileAvatar = 'profile_avatar_path';
 
   Future<void> _onSave() async {
     final name = _nameController.text.trim();
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please enter your name', style: GoogleFonts.nunitoSans()),
+          content: Text(context.tr('profile_settings.please_enter_name'), style: GoogleFonts.nunitoSans()),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -893,7 +937,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Profile saved successfully', style: GoogleFonts.nunitoSans(color: Colors.white)),
+        content: Text(context.tr('profile_settings.profile_saved'), style: GoogleFonts.nunitoSans(color: Colors.white)),
         backgroundColor: AppColors.primaryBrand,
         behavior: SnackBarBehavior.floating,
       ),
@@ -901,11 +945,53 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     context.pop(ProfileSettingsResult(name: name));
   }
 
+  Future<void> _pickImage(ImageSource source) async {
+    try {
+      final picked = await _imagePicker.pickImage(
+        source: source,
+        maxWidth: 800,
+        maxHeight: 800,
+        imageQuality: 85,
+      );
+      if (picked == null) return;
+
+      // Seçilen resmi uygulamanın kalıcı dizinine kopyala (temp path yerine).
+      final tempFile = File(picked.path);
+      if (!await tempFile.exists()) return;
+
+      final docsDir = await getApplicationDocumentsDirectory();
+      final avatarsDir = Directory(p.join(docsDir.path, 'avatars'));
+      if (!await avatarsDir.exists()) {
+        await avatarsDir.create(recursive: true);
+      }
+
+      final ext = p.extension(picked.path);
+      final fileName = 'avatar_${DateTime.now().millisecondsSinceEpoch}$ext';
+      final destPath = p.join(avatarsDir.path, fileName);
+      final savedFile = await tempFile.copy(destPath);
+
+      // Eski avatar dosyasını sil (varsa).
+      final prefs = await SharedPreferences.getInstance();
+      final oldPath = prefs.getString(_keyProfileAvatar);
+      if (oldPath != null && oldPath.isNotEmpty && oldPath != destPath) {
+        final oldFile = File(oldPath);
+        if (await oldFile.exists()) {
+          await oldFile.delete().catchError((_) {});
+        }
+      }
+
+      setState(() => _avatarFile = savedFile);
+      await prefs.setString(_keyProfileAvatar, destPath);
+    } catch (_) {
+      // Sessizce yut; istenirse ileride loglanabilir.
+    }
+  }
+
   void _onAccountDeleted() {
     context.go(AppPaths.onboarding);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Your account has been deleted', style: GoogleFonts.nunitoSans(color: Colors.white)),
+        content: Text(context.tr('profile_settings.account_deleted'), style: GoogleFonts.nunitoSans(color: Colors.white)),
         backgroundColor: const Color(0xFFC1443D),
         behavior: SnackBarBehavior.floating,
       ),
@@ -944,7 +1030,7 @@ class _DeleteAccountDialogState extends State<_DeleteAccountDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Are you sure you want to delete your account?',
+              context.tr('profile_settings.delete_confirm'),
               textAlign: TextAlign.center,
               style: GoogleFonts.nunitoSans(
                 color: const Color(0xFF000000),
@@ -975,7 +1061,7 @@ class _DeleteAccountDialogState extends State<_DeleteAccountDialog> {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      'I approve',
+                      context.tr('profile_settings.i_approve'),
                       style: GoogleFonts.nunitoSans(
                         color: const Color(0xFF000000),
                         fontWeight: FontWeight.w400,
@@ -1001,7 +1087,7 @@ class _DeleteAccountDialogState extends State<_DeleteAccountDialog> {
                       ),
                     ),
                     child: Text(
-                      'Cancel',
+                      context.tr('common.cancel'),
                       style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
@@ -1029,7 +1115,7 @@ class _DeleteAccountDialogState extends State<_DeleteAccountDialog> {
                       ),
                     ),
                     child: Text(
-                      'Delete',
+                      context.tr('profile_settings.delete'),
                       style: GoogleFonts.nunitoSans(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,

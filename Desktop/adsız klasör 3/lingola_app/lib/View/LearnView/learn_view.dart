@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import 'package:lingola_app/src/navigation/app_routes.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/radius.dart';
 import 'package:lingola_app/src/theme/spacing.dart';
@@ -10,7 +14,7 @@ import 'package:lingola_app/src/theme/typography.dart';
 
 /// Learn sekmesi: header (geri + başlık + selamlama + avatar) + Learning Content kartları.
 /// Header kaydırma ile küçülür (SliverAppBar).
-class LearnScreen extends StatelessWidget {
+class LearnScreen extends StatefulWidget {
   const LearnScreen({
     super.key,
     this.userName = 'Jhon Doe',
@@ -22,9 +26,37 @@ class LearnScreen extends StatelessWidget {
   final int savedWordsCount;
   final VoidCallback? onBackTap;
 
+  @override
+  State<LearnScreen> createState() => _LearnScreenState();
+}
+
+class _LearnScreenState extends State<LearnScreen> {
   static const Color _learnBlue = Color(0xFF0575E6);
   static const Color _learnBlueDark = Color(0xFF021B79);
   static const double _headerExpandedHeight = 150;
+
+  File? _avatarFile;
+  static const String _keyProfileAvatar = 'profile_avatar_path';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAvatar();
+  }
+
+  Future<void> _loadAvatar() async {
+    final prefs = await SharedPreferences.getInstance();
+    final path = prefs.getString(_keyProfileAvatar);
+    File? file;
+    if (path != null && path.isNotEmpty) {
+      final f = File(path);
+      if (await f.exists()) {
+        file = f;
+      }
+    }
+    if (!mounted) return;
+    setState(() => _avatarFile = file);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,44 +98,46 @@ class LearnScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 50),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, AppSpacing.sm, 0, AppSpacing.xs),
-                          child: Row(
-                            children: [
-                              if (onBackTap != null)
-                                IconButton(
-                              onPressed: onBackTap,
-                              icon: Transform.translate(
-                                offset: const Offset(6, 0),
-                                child: Transform.scale(
-                                  scaleX: -1,
-                                  child: SvgPicture.asset(
-                                    'assets/icons/icon_arrow_right.svg',
-                                    width: 20,
-                                    height: 9,
-                                    colorFilter: const ColorFilter.mode(Color(0xFF000000), BlendMode.srcIn),
-                                    fit: BoxFit.contain,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(height: 50),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, AppSpacing.sm, 0, AppSpacing.xs),
+                            child: Row(
+                              children: [
+                                if (widget.onBackTap != null)
+                                  IconButton(
+                                    onPressed: widget.onBackTap,
+                                    icon: Transform.translate(
+                                      offset: const Offset(6, 0),
+                                      child: Transform.scale(
+                                        scaleX: -1,
+                                        child: SvgPicture.asset(
+                                          'assets/icons/icon_arrow_right.svg',
+                                          width: 20,
+                                          height: 9,
+                                          colorFilter: const ColorFilter.mode(Color(0xFF000000), BlendMode.srcIn),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Text(
+                                  context.tr('learn.title'),
+                                  style: GoogleFonts.nunitoSans(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.onSurface,
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                              Text(
-                                'Learn',
-                                style: GoogleFonts.nunitoSans(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.onSurface,
-                                ),
-                              ),
-                            ],
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, AppSpacing.xs, 0, AppSpacing.sm),
                           child: Row(
@@ -114,7 +148,7 @@ class LearnScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                 Text(
-                                  'Hello ${userName.split(' ').first},',
+                                  context.tr('learn.hello_user', args: [widget.userName.split(' ').first]),
                                   style: AppTypography.titleLarge.copyWith(
                                     fontSize: 32,
                                     fontWeight: FontWeight.w700,
@@ -123,7 +157,7 @@ class LearnScreen extends StatelessWidget {
                                 ),
                                     const SizedBox(height: 2),
                                     Text(
-                                  'Let\'s upgrade your skills.',
+                                  context.tr('learn.subtitle'),
                                   style: AppTypography.bodySmall.copyWith(
                                     color: AppColors.onSurfaceVariant,
                                     fontSize: 15,
@@ -134,14 +168,25 @@ class LearnScreen extends StatelessWidget {
                                 ),
                               const SizedBox(width: AppSpacing.md),
                               ClipRRect(
-                            borderRadius: BorderRadius.circular(14),
-                            child: Image.asset(
-                              'assets/dummy/image 2.png',
-                              width: 56,
-                              height: 56,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                                borderRadius: BorderRadius.circular(14),
+                                child: SizedBox(
+                                  width: 56,
+                                  height: 56,
+                                  child: _avatarFile != null
+                                      ? Image.file(
+                                          _avatarFile!,
+                                          width: 56,
+                                          height: 56,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.asset(
+                                          'assets/dummy/image 2.png',
+                                          width: 56,
+                                          height: 56,
+                                          fit: BoxFit.cover,
+                                        ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -151,12 +196,13 @@ class LearnScreen extends StatelessWidget {
                 ),
               ),
             ),
+            ), // SliverAppBar
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.xl, AppSpacing.xl, AppSpacing.lg + 100),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   Text(
-                    'Learning Content',
+                    context.tr('learn.learning_content'),
                     style: AppTypography.titleLarge.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
@@ -215,7 +261,7 @@ class LearnScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Word Practice',
+                  context.tr('learn.word_practice'),
                   style: AppTypography.titleLarge.copyWith(
                     color: Colors.white,
                     fontSize: 20,
@@ -228,7 +274,7 @@ class LearnScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '20.000+',
+                    context.tr('learn.words_20k'),
                     style: AppTypography.titleLarge.copyWith(
                       color: Colors.white,
                       fontSize: 20,
@@ -236,7 +282,7 @@ class LearnScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Words',
+                    context.tr('learn.words_count'),
                     style: AppTypography.bodySmall.copyWith(
                       color: const Color(0xFFFFFFFF),
                       fontSize: 14,
@@ -332,15 +378,20 @@ class LearnScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Daily Test',
-                    style: AppTypography.bodySmall.copyWith(
-                      color: AppColors.onSurface,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Quicksand',
+                  Expanded(
+                    child: Text(
+                      context.tr('learn.daily_test'),
+                      style: AppTypography.bodySmall.copyWith(
+                        color: AppColors.onSurface,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Quicksand',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  const SizedBox(width: 8),
                   SvgPicture.asset(
                     'assets/icons/icon_translate.svg',
                     width: 40,
@@ -351,7 +402,7 @@ class LearnScreen extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Business\nEnglish',
+                context.tr('learn.business_english'),
                 style: AppTypography.title.copyWith(
                   color: _learnBlue,
                   fontWeight: FontWeight.w700,
@@ -379,7 +430,7 @@ class LearnScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Center(
                           child: Text(
-                            'Continue Test',
+                            context.tr('learn.continue_test'),
                             style: AppTypography.labelLarge.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -426,15 +477,20 @@ class LearnScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Reading Test',
-                style: AppTypography.bodySmall.copyWith(
-                  color: AppColors.onSurface,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Quicksand',
+              Expanded(
+                child: Text(
+                  context.tr('learn.reading_test'),
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.onSurface,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Quicksand',
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
+              const SizedBox(width: 8),
               SvgPicture.asset(
                 'assets/icons/icon_mic.svg',
                 width: 40,
@@ -445,7 +501,7 @@ class LearnScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'Business\nNegotiation',
+            context.tr('learn.business_negotiation'),
             style: AppTypography.title.copyWith(
               color: _learnBlue,
               fontWeight: FontWeight.w700,
@@ -473,7 +529,7 @@ class LearnScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Center(
                       child: Text(
-                        'Continue Test',
+                        context.tr('learn.continue_test'),
                         style: AppTypography.labelLarge.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -534,7 +590,7 @@ class LearnScreen extends StatelessWidget {
                         end: Alignment.centerRight,
                       ).createShader(bounds),
                       child: Text(
-                        'Saved Word',
+                        context.tr('learn.saved_word'),
                         style: GoogleFonts.quicksand(
                           fontWeight: FontWeight.w700,
                           fontSize: 24,
@@ -545,7 +601,7 @@ class LearnScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Review the words\nyou have saved',
+                      context.tr('learn.saved_word_subtitle'),
                       style: AppTypography.bodySmall.copyWith(
                         color: AppColors.onSurfaceVariant,
                         fontSize: 14,
@@ -567,7 +623,7 @@ class LearnScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                '$savedWordsCount saved word',
+                context.tr('learn.saved_word_count', args: ['${widget.savedWordsCount}']),
                 style: AppTypography.caption.copyWith(
                   color: AppColors.onSurfaceVariant.withValues(alpha: 0.8),
                   fontSize: 12,

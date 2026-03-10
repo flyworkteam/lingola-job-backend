@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingola_app/src/theme/colors.dart';
@@ -18,46 +19,16 @@ class _FaqScreenState extends State<FaqScreen> {
   int? _expandedIndex;
 
   static const List<_FaqItem> _items = [
-    _FaqItem(
-      question: 'Lingola Job nedir?',
-      answer: 'Lingola Job, mesleki dil becerilerini geliştirmek isteyenler için tasarlanmış bir dil öğrenme uygulamasıdır.',
-    ),
-    _FaqItem(
-      question: 'Joblingo genel dil mi öğretir?',
-      answer: 'Hayır. Lingola Job, günlük sohbetten çok iş hayatında kullanılan kelime ve ifadeleri öğretir.',
-    ),
-    _FaqItem(
-      question: 'Hangi meslekler için uygundur?',
-      answer: 'IT, pazarlama, finans, sağlık, insan kaynakları ve daha birçok sektör için içerikler sunar.',
-    ),
-    _FaqItem(
-      question: 'Dil seviyemi bilmiyorsam ne yapmalıyım?',
-      answer: 'Uygulama içindeki seviye belirleme ile seviyen otomatik olarak tespit edilir.',
-    ),
-    _FaqItem(
-      question: 'Yeni başlayanlar Lingola Job kullanabilir mi?',
-      answer: 'Evet. A1 seviyesinden itibaren herkes için uygun içerikler bulunmaktadır.',
-    ),
-    _FaqItem(
-      question: 'İçerikler nasıl hazırlanıyor?',
-      answer: 'İçerikler, gerçek iş senaryoları ve mesleki kullanım örnekleri temel alınarak hazırlanır.',
-    ),
-    _FaqItem(
-      question: 'Sadece kelime mi öğretiyor?',
-      answer: 'Hayır. Kelimelerin yanı sıra cümle yapıları, diyaloglar ve kullanım örnekleri de sunulur.',
-    ),
-    _FaqItem(
-      question: 'Günlük ne kadar zaman ayırmam gerekir?',
-      answer: 'Günde 10–15 dakika düzenli kullanım için yeterlidir.',
-    ),
-    _FaqItem(
-      question: 'Öğrendiklerimi gerçekten iş hayatında kullanabilir miyim?',
-      answer: 'Evet. İçerikler doğrudan toplantı, e-posta ve iş iletişimine uyarlanmıştır.',
-    ),
-    _FaqItem(
-      question: 'Lingola Job ücretsiz mi?',
-      answer: 'Uygulama ücretsiz olarak kullanılabilir, gelişmiş içerikler için premium seçenekler sunulur.',
-    ),
+    _FaqItem(questionKey: 'faq.q1', answerKey: 'faq.a1'),
+    _FaqItem(questionKey: 'faq.q2', answerKey: 'faq.a2'),
+    _FaqItem(questionKey: 'faq.q3', answerKey: 'faq.a3'),
+    _FaqItem(questionKey: 'faq.q4', answerKey: 'faq.a4'),
+    _FaqItem(questionKey: 'faq.q5', answerKey: 'faq.a5'),
+    _FaqItem(questionKey: 'faq.q6', answerKey: 'faq.a6'),
+    _FaqItem(questionKey: 'faq.q7', answerKey: 'faq.a7'),
+    _FaqItem(questionKey: 'faq.q8', answerKey: 'faq.a8'),
+    _FaqItem(questionKey: 'faq.q9', answerKey: 'faq.a9'),
+    _FaqItem(questionKey: 'faq.q10', answerKey: 'faq.a10'),
   ];
 
   static const double _headerExpandedHeight = 80;
@@ -98,7 +69,7 @@ class _FaqScreenState extends State<FaqScreen> {
             ),
             titleSpacing: 4,
             title: Text(
-              'F.A.Q.',
+              context.tr('faq.title'),
               style: AppTypography.titleLarge.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -123,13 +94,13 @@ class _FaqScreenState extends State<FaqScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       _FaqQuestionCard(
-                        question: _items[i].question,
+                        question: context.tr(_items[i].questionKey),
                         isExpanded: _expandedIndex == i,
                         onTap: () => setState(() {
                           _expandedIndex = _expandedIndex == i ? null : i;
                         }),
                       ),
-                      if (_expandedIndex == i) _FaqAnswerCard(answer: _items[i].answer),
+                      if (_expandedIndex == i) _FaqAnswerCard(answer: context.tr(_items[i].answerKey)),
                       if (_expandedIndex == i) const SizedBox(height: AppSpacing.sm),
                     ],
                   ),
@@ -145,9 +116,9 @@ class _FaqScreenState extends State<FaqScreen> {
 }
 
 class _FaqItem {
-  const _FaqItem({required this.question, required this.answer});
-  final String question;
-  final String answer;
+  const _FaqItem({required this.questionKey, required this.answerKey});
+  final String questionKey;
+  final String answerKey;
 }
 
 /// Soru kartı — tıklanınca açılır/kapanır, sağda chevron.

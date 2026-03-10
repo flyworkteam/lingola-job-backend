@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingola_app/src/theme/colors.dart';
@@ -8,13 +9,13 @@ import 'package:lingola_app/src/theme/typography.dart';
 class _NotificationItem {
   const _NotificationItem({
     required this.emoji,
-    required this.title,
-    required this.subtitle,
+    required this.titleKey,
+    required this.subtitleKey,
     required this.time,
   });
   final String emoji;
-  final String title;
-  final String subtitle;
+  final String titleKey;
+  final String subtitleKey;
   final String time;
 }
 
@@ -42,14 +43,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     _notifications = [
       const _NotificationItem(
         emoji: '☕',
-        title: 'Kahven bitmeden biter!',
-        subtitle: 'Sadece 5 dakikalık bir pratik seni bekliyor.',
+        titleKey: 'notifications.notif1_title',
+        subtitleKey: 'notifications.notif1_subtitle',
         time: '17:58',
       ),
       const _NotificationItem(
         emoji: '🤔',
-        title: 'Sensiz buralar çok sessiz...',
-        subtitle: 'Uzun zaman oldu! Paslanmadan hafızanı tazeleyelim mi?',
+        titleKey: 'notifications.notif2_title',
+        subtitleKey: 'notifications.notif2_subtitle',
         time: '14:20',
       ),
     ];
@@ -95,7 +96,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
                 titleSpacing: 4,
                 title: Text(
-                  'Notifications',
+                  context.tr('notifications.title'),
                   style: AppTypography.titleLarge.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -105,62 +106,68 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 centerTitle: false,
                 actions: [
                   PopupMenuButton<String>(
-            position: PopupMenuPosition.under,
-            constraints: const BoxConstraints(minWidth: 117, maxWidth: 117, minHeight: 45, maxHeight: 45),
-            padding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            icon: Transform.translate(
-              offset: const Offset(-6, 0),
-              child: Icon(Icons.more_vert, size: 24, color: AppColors.onSurface),
-            ),
-            onSelected: (value) {
-              if (value == 'delete_all') {
-                _showDeleteAllConfirmDialog(context, () {
-                  setState(() => _notifications.clear());
-                });
-              }
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem<String>(
-                value: 'delete_all',
-                height: 45,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                child: Center(
-                  child: Transform.translate(
-                    offset: const Offset(0, -8),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/icon_delete.svg',
-                          width: 16,
-                          height: 18,
-                          colorFilter: const ColorFilter.mode(
-                            Color(0xFFF00000),
-                            BlendMode.srcIn,
-                          ),
-                          fit: BoxFit.contain,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          'Delete All',
-                          style: AppTypography.labelLarge.copyWith(
-                            color: const Color(0xFFF00000),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
+                    position: PopupMenuPosition.under,
+                    constraints: const BoxConstraints(
+                      minWidth: 200,
+                      maxWidth: 280,
+                      minHeight: 52,
                     ),
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    icon: Transform.translate(
+                      offset: const Offset(-6, 0),
+                      child: Icon(Icons.more_vert, size: 24, color: AppColors.onSurface),
+                    ),
+                    onSelected: (value) {
+                      if (value == 'delete_all') {
+                        _showDeleteAllConfirmDialog(context, () {
+                          setState(() => _notifications.clear());
+                        });
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem<String>(
+                        value: 'delete_all',
+                        height: 52,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/icons/icon_delete.svg',
+                                width: 18,
+                                height: 20,
+                                colorFilter: const ColorFilter.mode(
+                                  Color(0xFFF00000),
+                                  BlendMode.srcIn,
+                                ),
+                                fit: BoxFit.contain,
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  context.tr('notifications.delete_all'),
+                                  style: AppTypography.labelLarge.copyWith(
+                                    color: const Color(0xFFF00000),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-            ],
-          ),
-        ],
+                ],
               ),
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.xl, AppSpacing.xl, 100),
@@ -170,21 +177,23 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 _buildPremiumCard(context),
                 const SizedBox(height: AppSpacing.lg),
               ],
-              ..._notifications.map((n) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-                child: _buildNotificationCard(
-                  context,
-                  emoji: n.emoji,
-                  title: n.title,
-                  subtitle: n.subtitle,
-                  time: n.time,
+              ..._notifications.map(
+                (n) => Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                  child: _buildNotificationCard(
+                    context,
+                    emoji: n.emoji,
+                    title: context.tr(n.titleKey),
+                    subtitle: context.tr(n.subtitleKey),
+                    time: n.time,
+                  ),
                 ),
-              )),
+              ),
               if (_notifications.isEmpty)
                 Padding(
                   padding: const EdgeInsets.only(top: AppSpacing.lg),
                   child: Text(
-                    'No notifications yet',
+                    context.tr('notifications.no_notifications'),
                     textAlign: TextAlign.center,
                     style: AppTypography.bodySmall.copyWith(
                       color: AppColors.onSurfaceVariant.withValues(alpha: 0.8),
@@ -250,7 +259,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               ),
               const SizedBox(height: 24),
               Text(
-                'Are you sure you want to\ndelete all notifications?',
+                context.tr('notifications.delete_all_confirm'),
                 textAlign: TextAlign.center,
                 style: AppTypography.title.copyWith(
                   color: const Color(0xFF1C1B1F),
@@ -276,7 +285,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              'Cancel',
+                              context.tr('common.cancel'),
                               style: AppTypography.labelLarge.copyWith(
                                 color: AppColors.onSurface,
                                 fontSize: 16,
@@ -306,7 +315,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              'Delete',
+                              context.tr('profile_settings.delete'),
                               style: AppTypography.labelLarge.copyWith(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -369,7 +378,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Premium avantajlarını kaçırma!',
+                  context.tr('notifications.premium_benefits'),
                   style: AppTypography.title.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -378,7 +387,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Premium abonesi olarak fırsatları yakala',
+                  context.tr('notifications.premium_benefits_desc'),
                   style: AppTypography.bodySmall.copyWith(
                     color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 13,

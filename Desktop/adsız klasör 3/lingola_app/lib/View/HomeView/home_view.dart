@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/src/theme/colors.dart';
@@ -11,9 +15,8 @@ import 'package:lingola_app/src/widgets/app_gradient_button.dart';
 import 'package:lingola_app/src/widgets/app_icon_button.dart';
 
 class _HomeLanguage {
-  const _HomeLanguage({required this.id, required this.title, required this.flagAsset});
+  const _HomeLanguage({required this.id, required this.flagAsset});
   final String id;
-  final String title;
   final String flagAsset;
 }
 
@@ -27,6 +30,7 @@ class HomeScreen extends StatefulWidget {
     this.userName = 'Jhon Doe',
     this.isPremium = false,
     this.savedWordsCount = 0,
+    this.totalXp = 0,
     this.onLearnNewWordsTap,
     this.onSavedWordsTap,
     this.onDictionaryTap,
@@ -37,6 +41,8 @@ class HomeScreen extends StatefulWidget {
   final bool isPremium;
   /// Kaydedilen kelime sayısı (Saved Words kartında gösterilir).
   final int savedWordsCount;
+  /// Kullanıcının toplam XP'si (Quick Actions barları için).
+  final int totalXp;
   /// Learn New Words kartına tıklanınca — Learn sekmesine geçip Word Practice açılır.
   final VoidCallback? onLearnNewWordsTap;
   /// Saved Words kartına tıklanınca — Learn sekmesine geçip Saved Word sayfası açılır.
@@ -50,20 +56,65 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static const List<_HomeLanguage> _languages = [
-    _HomeLanguage(id: 'english', title: 'English', flagAsset: 'assets/bayrak/flag_english.svg'),
-    _HomeLanguage(id: 'german', title: 'German', flagAsset: 'assets/bayrak/flag_german.svg'),
-    _HomeLanguage(id: 'italian', title: 'Italian', flagAsset: 'assets/bayrak/flag_italian.svg'),
-    _HomeLanguage(id: 'french', title: 'French', flagAsset: 'assets/bayrak/flag_french.svg'),
-    _HomeLanguage(id: 'japanese', title: 'Japanese', flagAsset: 'assets/bayrak/flag_japanese.svg'),
-    _HomeLanguage(id: 'spanish', title: 'Spanish', flagAsset: 'assets/bayrak/Spain.png'),
-    _HomeLanguage(id: 'russian', title: 'Russian', flagAsset: 'assets/bayrak/flag_russian.svg'),
-    _HomeLanguage(id: 'turkish', title: 'Turkish', flagAsset: 'assets/bayrak/flag_turkish.svg'),
-    _HomeLanguage(id: 'korean', title: 'Korean', flagAsset: 'assets/bayrak/flag_korean.svg'),
-    _HomeLanguage(id: 'hindi', title: 'Hindi', flagAsset: 'assets/bayrak/flag_hindi.svg'),
-    _HomeLanguage(id: 'portuguese', title: 'Portuguese', flagAsset: 'assets/bayrak/flag_portuguese.svg'),
+    _HomeLanguage(id: 'english', flagAsset: 'assets/bayrak/flag_english.svg'),
+    _HomeLanguage(id: 'german', flagAsset: 'assets/bayrak/flag_german.svg'),
+    _HomeLanguage(id: 'italian', flagAsset: 'assets/bayrak/flag_italian.svg'),
+    _HomeLanguage(id: 'french', flagAsset: 'assets/bayrak/flag_french.svg'),
+    _HomeLanguage(id: 'japanese', flagAsset: 'assets/bayrak/flag_japanese.svg'),
+    _HomeLanguage(id: 'spanish', flagAsset: 'assets/bayrak/Spain.png'),
+    _HomeLanguage(id: 'russian', flagAsset: 'assets/bayrak/flag_russian.svg'),
+    _HomeLanguage(id: 'turkish', flagAsset: 'assets/bayrak/flag_turkish.svg'),
+    _HomeLanguage(id: 'korean', flagAsset: 'assets/bayrak/flag_korean.svg'),
+    _HomeLanguage(id: 'hindi', flagAsset: 'assets/bayrak/flag_hindi.svg'),
+    _HomeLanguage(id: 'portuguese', flagAsset: 'assets/bayrak/flag_portuguese.svg'),
   ];
 
   String _selectedLanguageId = 'english';
+  bool _hasSyncedLocaleFromContext = false;
+  File? _avatarFile;
+
+  static const String _keyProfileAvatar = 'profile_avatar_path';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAvatar();
+  }
+
+  Future<void> _loadAvatar() async {
+    final prefs = await SharedPreferences.getInstance();
+    final path = prefs.getString(_keyProfileAvatar);
+    File? file;
+    if (path != null && path.isNotEmpty) {
+      final f = File(path);
+      if (await f.exists()) {
+        file = f;
+      }
+    }
+    if (!mounted) return;
+    setState(() => _avatarFile = file);
+  }
+
+  /// Dil id (english, german, ...) → locale kodu (en, de, ...)
+  static String? _languageIdToLocale(String id) {
+    const m = {
+      'english': 'en', 'german': 'de', 'italian': 'it', 'french': 'fr',
+      'japanese': 'ja', 'spanish': 'es', 'russian': 'ru', 'turkish': 'tr',
+      'korean': 'ko', 'hindi': 'hi', 'portuguese': 'pt',
+    };
+    return m[id];
+  }
+
+  /// Mevcut locale'e göre dil id (dropdown ile senkron)
+  static String? _localeToLanguageId(Locale locale) {
+    final code = locale.languageCode.toLowerCase();
+    const m = {
+      'en': 'english', 'de': 'german', 'it': 'italian', 'fr': 'french',
+      'ja': 'japanese', 'es': 'spanish', 'ru': 'russian', 'tr': 'turkish',
+      'ko': 'korean', 'hi': 'hindi', 'pt': 'portuguese',
+    };
+    return m[code];
+  }
 
   _HomeLanguage get _selectedLanguage =>
       _languages.firstWhere((l) => l.id == _selectedLanguageId, orElse: () => _languages.first);
@@ -71,11 +122,23 @@ class _HomeScreenState extends State<HomeScreen> {
   static const double _cardWidth = 180;
   static const double _cardHeight = 250;
   static const double _cardGap = 10;
-  static const double _headerExpandedHeight = 150;
+  static const double _headerExpandedHeight = 190;
   static const double _maskCardIconTop = 32;
   static const double _maskCardTextTop = 115; // yazı orijinal konumda (xxxl+icon+gap)
   static const double _contentMaxWidth = 380;
   static const double _continueLessonMaxWidth = 370;
+
+  double get _levelProgress {
+    const xpForFullBar = 500; // 500 XP'de bar %100 olsun
+    if (widget.totalXp <= 0) return 0;
+    final v = widget.totalXp / xpForFullBar;
+    return v.clamp(0.0, 1.0);
+  }
+
+  int get _levelPercent => (_levelProgress * 100).round();
+
+  double get _continueLessonProgress => _levelProgress;
+  int get _continueLessonPercent => _levelPercent;
 
   void _showLanguageSheet(BuildContext context) {
     showModalBottomSheet<void>(
@@ -114,9 +177,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      onTap: () {
-                        setState(() => _selectedLanguageId = lang.id);
-                        Navigator.pop(ctx);
+                      onTap: () async {
+                        final localeCode = _languageIdToLocale(lang.id);
+                        if (localeCode != null) {
+                          await ctx.setLocale(Locale(localeCode));
+                          if (!mounted) return;
+                          setState(() => _selectedLanguageId = lang.id);
+                        }
+                        if (ctx.mounted) Navigator.pop(ctx);
                       },
                       borderRadius: BorderRadius.circular(16),
                       child: Padding(
@@ -138,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(width: AppSpacing.lg),
                             Expanded(
                               child: Text(
-                                lang.title,
+                                'languages.${lang.id}'.tr(),
                                 style: AppTypography.labelLarge.copyWith(
                                   color: AppColors.onSurface,
                                   fontSize: 16,
@@ -161,6 +229,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_hasSyncedLocaleFromContext) {
+      final id = _localeToLanguageId(context.locale);
+      if (id != null) {
+        _hasSyncedLocaleFromContext = true;
+        if (id != _selectedLanguageId) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) setState(() => _selectedLanguageId = id);
+          });
+        }
+      }
+    }
     return Scaffold(
       backgroundColor: const Color(0xFFF2F5FC),
       body: CustomScrollView(
@@ -196,14 +275,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SizedBox(height: 50),
-                      _buildHeaderContent(context),
-                    ],
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 50),
+                        _buildHeaderContent(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -242,26 +324,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHeaderContent(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, AppSpacing.sm, 0, AppSpacing.xs),
-          child: Row(
+    return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, AppSpacing.sm, 0, AppSpacing.xs),
+            child: Row(
                       children: [
                         // Avatar (kare, yuvarlatılmış köşe)
                         ClipRRect(
                           borderRadius: BorderRadius.circular(14),
-                          child: Container(
+                          child: SizedBox(
                             width: 56,
                             height: 56,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFF2F5FC),
-                              image: const DecorationImage(
-                                image: AssetImage('assets/dummy/image 2.png'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                            child: _avatarFile != null
+                                ? Image.file(
+                                    _avatarFile!,
+                                    width: 56,
+                                    height: 56,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/dummy/image 2.png',
+                                    width: 56,
+                                    height: 56,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                         AppSpacing.md.width,
@@ -300,7 +390,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: AppSpacing.sm),
                                     Text(
-                                      'PREMIUM',
+                                      'home.premium_badge'.tr(),
                                       style: AppTypography.labelLarge.copyWith(
                                         color: AppColors.onSurfaceVariant,
                                         fontWeight: FontWeight.w600,
@@ -310,7 +400,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 )
                               : Text(
-                                  'Free',
+                                  'home.free_badge'.tr(),
                                   style: AppTypography.labelLarge.copyWith(
                                     color: const Color(0xFF5C5C5C),
                                     fontWeight: FontWeight.w600,
@@ -334,11 +424,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ],
-        ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, AppSpacing.xs, 0, AppSpacing.sm),
-          child: Row(
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, AppSpacing.xs, 0, AppSpacing.sm),
+            child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Expanded(
@@ -346,14 +436,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Hello ${widget.userName.split(' ').first},',
+                                'home.hello_user'.tr(args: [widget.userName.split(' ').first]),
                                 style: AppTypography.bodySmall.copyWith(
                                   color: AppColors.onSurfaceVariant,
                                 ),
                               ),
                               const SizedBox(height: 2),
                               Text(
-                                'Continue to English',
+                                'home.continue_to_language'.tr(args: ['languages.${_selectedLanguage.id}'.tr()]),
                                 style: AppTypography.titleLarge.copyWith(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w700,
@@ -399,7 +489,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(width: AppSpacing.sm),
                                   Text(
-                                    _selectedLanguage.title,
+                                    'languages.${_selectedLanguage.id}'.tr(),
                                     style: AppTypography.labelLarge.copyWith(
                                       color: AppColors.onSurface,
                                       fontSize: 13,
@@ -420,7 +510,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ],
-              );
+              ),
+    );
   }
 
   Widget _buildQuickActionsHeader() {
@@ -430,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Quick Actions',
+            'home.quick_actions'.tr(),
             style: AppTypography.titleLarge.copyWith(
               fontWeight: FontWeight.w700,
               color: AppColors.onSurface,
@@ -450,7 +541,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'A1-Beginner',
+                        'home.level_beginner'.tr(),
                         style: AppTypography.title.copyWith(
                           fontWeight: FontWeight.w700,
                           color: AppColors.onSurface,
@@ -459,6 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: AppSpacing.md),
                       LayoutBuilder(
                         builder: (context, constraints) {
+                          final progress = _levelProgress;
                           return Stack(
                             alignment: Alignment.center,
                             children: [
@@ -473,7 +565,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Positioned(
                                 left: 0,
                                 child: Container(
-                                  width: constraints.maxWidth * 0.35,
+                                  width: constraints.maxWidth * progress,
                                   height: 12,
                                   decoration: BoxDecoration(
                                     color: AppColors.primaryBrand,
@@ -482,7 +574,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Text(
-                                '35%',
+                                '$_levelPercent%',
                                 style: AppTypography.caption.copyWith(
                                   color: AppColors.onSurfaceVariant,
                                   fontWeight: FontWeight.w600,
@@ -551,7 +643,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      'Learn New\nWords',
+                                      'home.learn_new_words_title'.tr(),
                                       style: AppTypography.title.copyWith(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -561,7 +653,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(height: AppSpacing.sm),
                                     Text(
-                                      'Practice words in\nyour chosen language.',
+                                      'home.learn_new_words_subtitle'.tr(),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: AppTypography.bodySmall.copyWith(
@@ -620,7 +712,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'Most Frequently\nUsed Terms',
+                                    'home.mfut_title'.tr(),
                                     style: AppTypography.title.copyWith(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
@@ -630,7 +722,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: AppSpacing.sm),
                                   Text(
-                                    'Take a Look at the Most\nFrequently Used Terms',
+                                    'home.mfut_subtitle'.tr(),
                                     style: AppTypography.bodySmall.copyWith(
                                       color: Colors.white,
                                       fontSize: 11,
@@ -708,7 +800,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(width: AppSpacing.xs),
                             Expanded(
                               child: Text(
-                                'Play at the top of your industry',
+                                'home.get_premium_title'.tr(),
                                 style: AppTypography.title.copyWith(
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black,
@@ -726,7 +818,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               width: double.infinity,
                               child: Text(
-                                'Unlimited access to learn and review\nprofessional vocabulary',
+                                'home.get_premium_subtitle'.tr(),
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -741,7 +833,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Center(
                           child: AppGradientButton(
-                            label: 'Get Premium',
+                            label: 'home.get_premium'.tr(),
                             onPressed: () {},
                           ),
                         ),
@@ -778,7 +870,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'Continue Lesson',
+                                    'home.continue_lesson'.tr(),
                                     style: AppTypography.title.copyWith(
                                       fontWeight: FontWeight.w700,
                                       color: AppColors.onSurface,
@@ -787,7 +879,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    'Business Negotiations',
+                                    'home.business_negotiations'.tr(),
                                     style: AppTypography.bodySmall.copyWith(
                                       color: AppColors.onSurfaceVariant,
                                       fontSize: 14,
@@ -812,7 +904,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: LinearProgressIndicator(
-                                  value: 0.6,
+                                  value: _continueLessonProgress,
                                   minHeight: 12,
                                   backgroundColor: const Color(0xFFE8E8E8),
                                   valueColor: const AlwaysStoppedAnimation<Color>(
@@ -823,7 +915,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '60%',
+                              '$_continueLessonPercent%',
                               style: AppTypography.caption.copyWith(
                                 color: AppColors.onSurfaceVariant,
                                 fontWeight: FontWeight.w600,
@@ -868,7 +960,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const SizedBox(height: 10),
+                                  const SizedBox(height: 6),
                                   SizedBox(
                                     width: 52,
                                     height: 52,
@@ -890,9 +982,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 16),
                                   Text(
-                                    'Saved\nWord',
+                                    'home.saved_word_title'.tr(),
                                     style: AppTypography.titleLarge.copyWith(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
@@ -904,7 +996,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: 6),
                                   Text(
-                                    '${widget.savedWordsCount} words',
+                                    'home.saved_word_count'.tr(args: ['${widget.savedWordsCount}']),
                                     style: AppTypography.bodySmall.copyWith(
                                       color: AppColors.onSurfaceVariant,
                                       fontSize: 12,
@@ -944,13 +1036,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Stack(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const SizedBox(height: 6),
                                     SizedBox(
                                       width: 52,
                                       height: 52,
@@ -972,9 +1064,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(height: 38),
+                                    const SizedBox(height: 30),
                                     Text(
-                                      'Dictionary',
+                                      'home.dictionary_title'.tr(),
                                       style: AppTypography.titleLarge.copyWith(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -986,7 +1078,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(height: 6),
                                     Text(
-                                      'Search Word',
+                                      'home.dictionary_subtitle'.tr(),
                                       style: AppTypography.bodySmall.copyWith(
                                         color: AppColors.onSurfaceVariant,
                                         fontSize: 12,

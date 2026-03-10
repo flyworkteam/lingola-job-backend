@@ -17,6 +17,9 @@ import 'package:lingola_app/View/NotificationsView/notifications_view.dart';
 import 'package:lingola_app/View/FaqView/faq_view.dart';
 import 'package:lingola_app/View/MostFrequentlyUsedTermsView/most_frequently_used_terms_view.dart';
 import 'package:lingola_app/View/ProfileSettingsView/profile_settings_view.dart';
+import 'package:lingola_app/View/ForgotPasswordView/forgot_password_view.dart';
+import 'package:lingola_app/View/PremiumView/premium_view.dart';
+import 'package:lingola_app/src/config/app_prefs.dart';
 
 import 'app_routes.dart';
 
@@ -25,6 +28,23 @@ GoRouter createAppRouter() {
   return GoRouter(
     initialLocation: AppPaths.splash,
     debugLogDiagnostics: false,
+    redirect: (context, state) async {
+      final completed = await AppPrefs.isOnboardingCompleted();
+      if (!completed) return null;
+
+      final loc = state.matchedLocation;
+      final isIntroOrSplash = loc == AppPaths.splash || loc == AppPaths.splashIntro;
+      final isOnboarding = loc == AppPaths.onboarding ||
+          loc == AppPaths.onboarding2 ||
+          loc == AppPaths.onboarding3 ||
+          loc == AppPaths.onboarding4 ||
+          loc == AppPaths.onboarding5 ||
+          loc == AppPaths.onboarding6 ||
+          loc == AppPaths.onboarding7;
+
+      if (isIntroOrSplash || isOnboarding) return AppPaths.home;
+      return null;
+    },
     routes: [
       GoRoute(
         path: AppPaths.splash,
@@ -75,12 +95,16 @@ GoRouter createAppRouter() {
         builder: (_, __) => const Onboarding7Screen(),
       ),
       GoRoute(
+        path: AppPaths.forgotPassword,
+        builder: (_, __) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
         path: AppPaths.home,
         builder: (context, state) {
           final args = state.extra as HomeRouteArgs? ?? const HomeRouteArgs();
           return MainScreen(
             initialIndex: args.initialIndex,
-            isPremium: true,
+            isPremium: false,
           );
         },
       ),
@@ -105,6 +129,10 @@ GoRouter createAppRouter() {
       GoRoute(
         path: AppPaths.mostFrequentlyUsedTerms,
         builder: (_, __) => const MostFrequentlyUsedTermsScreen(),
+      ),
+      GoRoute(
+        path: AppPaths.premium,
+        builder: (_, __) => const PremiumBenefitsScreen(),
       ),
     ],
   );

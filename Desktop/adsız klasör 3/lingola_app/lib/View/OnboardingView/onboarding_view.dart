@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/Services/auth_service.dart';
+import 'package:lingola_app/Repositories/user_repository.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/radius.dart';
 import 'package:lingola_app/src/theme/spacing.dart';
@@ -23,6 +25,17 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   Animation<double>? _fade;
   Animation<Offset>? _slide;
   bool _isGoogleLoading = false;
+  bool _isFacebookLoading = false;
+
+  static const String _keyProfileName = 'profile_name';
+
+  Future<void> _persistUserDisplayNameIfAvailable() async {
+    final user = AuthService.instance.currentUser;
+    final name = user?.displayName;
+    if (name == null || name.trim().isEmpty) return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_keyProfileName, name.trim());
+  }
 
   Future<void> _onGoogleSignInPressed(BuildContext context) async {
     if (_isGoogleLoading) return;
@@ -30,12 +43,36 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     final error = await AuthService.instance.signInWithGoogle();
     if (!mounted) return;
     setState(() => _isGoogleLoading = false);
+    if (error == AuthService.signInCancelled) return; // Vazgeç'e basıldı, ileri gitme
     if (error != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Giriş başarısız: $error')),
       );
       return;
     }
+    await _persistUserDisplayNameIfAvailable();
+    // Backend'e kullanıcıyı kaydet (GET /api/users/me) — admin listede görünmesi için
+    await UserRepository().testBackend();
+    if (!mounted) return;
+    context.go(AppPaths.onboarding2);
+  }
+
+  Future<void> _onFacebookSignInPressed(BuildContext context) async {
+    if (_isFacebookLoading) return;
+    setState(() => _isFacebookLoading = true);
+    final error = await AuthService.instance.signInWithFacebook();
+    if (!mounted) return;
+    setState(() => _isFacebookLoading = false);
+    if (error == AuthService.signInCancelled) return;
+    if (error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Facebook girişi başarısız: $error')),
+      );
+      return;
+    }
+    await _persistUserDisplayNameIfAvailable();
+    await UserRepository().testBackend();
+    if (!mounted) return;
     context.go(AppPaths.onboarding2);
   }
 
@@ -210,8 +247,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           width: 20,
           height: 20,
         ),
-        label: 'Facebook',
-        onPressed: () => context.go(AppPaths.onboarding2),
+        label: _isFacebookLoading ? 'Giriş yapılıyor...' : 'Facebook',
+        onPressed: _isFacebookLoading ? () {} : () => _onFacebookSignInPressed(context),
       ),
     );
 

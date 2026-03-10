@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingola_app/src/theme/colors.dart';
@@ -93,9 +94,11 @@ class _NavBarItem extends StatelessWidget {
         isSelected ? Colors.white : const Color(0xFFB2B2B2);
 
     final content = Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
             iconAsset,
@@ -106,13 +109,17 @@ class _NavBarItem extends StatelessWidget {
           ),
           if (isSelected) ...[
             const SizedBox(width: 6),
-            Text(
-              label,
-              style: AppTypography.labelLarge.copyWith(
-                fontFamily: 'Quicksand',
-                fontWeight: FontWeight.w600,
-                fontSize: 12,
-                color: color,
+            Flexible(
+              child: Text(
+                label.tr(),
+                style: AppTypography.labelLarge.copyWith(
+                  fontFamily: 'Quicksand',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: color,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

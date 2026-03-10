@@ -1,6 +1,11 @@
+import 'dart:io' show Platform;
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lingola_app/Models/saved_word_item.dart';
 import 'package:lingola_app/Riverpod/Providers/all_providers.dart';
@@ -29,38 +34,13 @@ class SavedWordScreen extends ConsumerStatefulWidget {
 }
 
 class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
-  static const List<SavedWordItem> _placeholderWords = [
-    SavedWordItem(
-      word: 'Friend',
-      phonetic: '/frend/',
-      translations: 'Arkadaş, Dost, Yoldaş',
-      exampleEn: '\u201CA good friend is hard to find.\u201D',
-      exampleTr: 'İyi bir arkadaş bulmak zordur.',
-    ),
-    SavedWordItem(
-      word: 'Journey',
-      phonetic: '/ˈdʒɜː.ni/',
-      translations: 'Yolculuk, Seyahat',
-      exampleEn: '\u201CThe journey was longer than we expected.\u201D',
-      exampleTr: 'Yolculuk beklediğimizden daha uzundu.',
-    ),
-    SavedWordItem(
-      word: 'Improve',
-      phonetic: '/ɪmˈpruːv/',
-      translations: 'Geliştirmek, İyileştirmek',
-      exampleEn: '\u201CPractice every day to improve your skills.\u201D',
-      exampleTr: 'Becerilerini geliştirmek için her gün pratik yap.',
-    ),
-  ];
-
   int _currentIndex = 0;
   int _lastSwipeDirection = 1;
+  FlutterTts? _flutterTts;
+  bool _ttsInitialized = false;
 
-  /// Provider'dan liste; reaktif olduğu için liste değişince build yeniden çalışır.
   List<SavedWordItem> _cards(WidgetRef ref) {
-    final items = ref.watch(savedWordsProvider).items;
-    if (items.isNotEmpty) return items;
-    return _placeholderWords;
+    return ref.watch(savedWordsProvider).items;
   }
 
   void _goNext(List<SavedWordItem> cards) {
@@ -83,10 +63,72 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
     Navigator.of(context).pop(widget.returnToHomeOnPop);
   }
 
+  Future<void> _initTts() async {
+    if (_ttsInitialized) return;
+    _flutterTts ??= FlutterTts();
+    await _flutterTts!.awaitSpeakCompletion(true);
+    if (Platform.isIOS) {
+      try {
+        await _flutterTts!.setIosAudioCategory(
+          IosTextToSpeechAudioCategory.playback,
+          [
+            IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+            IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+            IosTextToSpeechAudioCategoryOptions.mixWithOthers,
+          ],
+          IosTextToSpeechAudioMode.voicePrompt,
+        );
+      } on MissingPluginException catch (_) {} on Exception catch (_) {}
+    }
+    _flutterTts!.setErrorHandler((msg) {
+      if (mounted) {
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          SnackBar(content: Text('Ses hatası: $msg'), behavior: SnackBarBehavior.floating),
+        );
+      }
+    });
+    _ttsInitialized = true;
+  }
+
+  Future<void> _speakWord(String word) async {
+    if (word.trim().isEmpty) return;
+    await _initTts();
+    if (_flutterTts == null) return;
+    await _flutterTts!.setVolume(1.0);
+    await _flutterTts!.setSpeechRate(0.5);
+    try {
+      await _flutterTts!.setLanguage('en-US');
+    } catch (_) {
+      try {
+        await _flutterTts!.setLanguage('en');
+      } catch (_) {}
+    }
+    await _flutterTts!.speak(word.trim());
+  }
+
+  @override
+  void dispose() {
+    _flutterTts?.stop();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final cards = _cards(ref);
-    if (cards.isNotEmpty && _currentIndex >= cards.length) {
+    if (cards.isEmpty) {
+      return PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) {
+          if (!didPop) _handleBack();
+        },
+        child: Scaffold(
+          backgroundColor: const Color(0xFFF2F5FC),
+          appBar: _buildAppBar(context),
+          body: _buildEmptyState(context),
+        ),
+      );
+    }
+    if (_currentIndex >= cards.length) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) setState(() => _currentIndex = cards.length - 1);
       });
@@ -119,7 +161,7 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
                       data: WordCardData.fromSavedWordItem(currentCard),
                       showSaveWord: false,
                       savedWordStyle: true,
-                      onListen: () {},
+                      onListen: () => _speakWord(currentCard.word),
                       onHint: () {},
                     ),
                   ),
@@ -128,15 +170,17 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       BackNextButton(
-                        label: 'Back',
+                        label: 'common.back'.tr(),
                         isPrimary: false,
                         onTap: () => _goPrev(cards),
+                        isBack: true,
                       ),
                       const SizedBox(width: 16),
                       BackNextButton(
-                        label: 'Next',
+                        label: 'common.next'.tr(),
                         isPrimary: true,
                         onTap: () => _goNext(cards),
+                        isBack: false,
                       ),
                     ],
                   ),
@@ -172,7 +216,7 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
       ),
       titleSpacing: 4,
       title: Text(
-        'Saved Word',
+        'saved_word.title'.tr(),
         style: GoogleFonts.quicksand(
           fontSize: 20,
           fontWeight: FontWeight.w600,
@@ -197,7 +241,7 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
           ),
           const SizedBox(height: AppSpacing.lg),
           Text(
-            'No saved words yet',
+            'saved_word.empty_title'.tr(),
             style: GoogleFonts.quicksand(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -206,7 +250,7 @@ class _SavedWordScreenState extends ConsumerState<SavedWordScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Save words from Word Practice\nto review them here.',
+            'saved_word.empty_subtitle'.tr(),
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
               fontSize: 14,

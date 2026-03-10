@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lingola_app/Models/word_item.dart';
+import 'package:lingola_app/Services/word_services.dart';
 import 'package:lingola_app/src/theme/typography.dart';
 import 'package:lingola_app/src/widgets/word_card_buttons.dart';
 
@@ -11,6 +14,8 @@ abstract final class WordCardTheme {
   static const Color cardBlue = Color(0xFF0575E6);
   static const Color cardBlueLayer1 = Color(0xFF3D8FEA);
   static const Color cardBlueLayer2 = Color(0xFF7BAEF2);
+  /// Kart metinleri (çeviri, okunuş, örnek cümle) — font/renk değiştirilmesin.
+  static const Color cardTextWhite = Color(0xFFFFFFFF);
   static const double width = 330;
   static const double height = 421;
   static const double radius = 30;
@@ -42,6 +47,81 @@ class WordCardData {
       exampleTr: item.exampleTr,
     );
   }
+
+  /// Mesleki kelime map'i (word, translation, example, example_translation) → kart için.
+  factory WordCardData.fromProfessionalWord(Map<String, dynamic> m) {
+    return WordCardData(
+      word: (m['word'] as String?)?.trim() ?? '',
+      phonetic: (m['phonetic'] as String?)?.trim() ?? '',
+      translations: (m['translation'] as String?)?.trim() ?? '',
+      exampleEn: (m['example'] as String?)?.trim() ?? '',
+      exampleTr: (m['example_translation'] as String?)?.trim() ?? '',
+    );
+  }
+
+  /// Backend [WordItem] (word, translation, phonetic?, exampleEn?, exampleTr?) → kart için.
+  factory WordCardData.fromWordItem(WordItem item) {
+    String exampleEn = item.exampleEn?.trim() ?? '';
+    String exampleTr = item.exampleTr?.trim() ?? '';
+    if (exampleEn.isEmpty && exampleTr.isEmpty) {
+      final w = item.word.trim().toLowerCase();
+      final fallback = _fallbackExamples[w];
+      if (fallback != null) {
+        exampleEn = fallback.$1;
+        exampleTr = fallback.$2;
+      }
+    }
+    return WordCardData(
+      word: item.word,
+      phonetic: item.phonetic ?? '',
+      translations: item.translation,
+      exampleEn: exampleEn,
+      exampleTr: exampleTr,
+    );
+  }
+
+  static const Map<String, (String, String)> _fallbackExamples = {
+    'the': ('The book is on the table.', 'Kitap masanın üzerinde.'),
+    'of': ('The capital of Turkey is Ankara.', 'Türkiye\'nin başkenti Ankara\'dır.'),
+    'and': ('I like tea and coffee.', 'Çay ve kahve severim.'),
+    'to': ('I want to learn English.', 'İngilizce öğrenmek istiyorum.'),
+    'in': ('She lives in Istanbul.', 'İstanbul\'da yaşıyor.'),
+    'is': ('This is my book.', 'Bu benim kitabım.'),
+    'that': ('That is a good idea.', 'Bu iyi bir fikir.'),
+    'for': ('This gift is for you.', 'Bu hediye senin için.'),
+    'it': ('It is raining today.', 'Bugün yağmur yağıyor.'),
+    'with': ('I went there with my friend.', 'Oraya arkadaşımla gittim.'),
+    'on': ('The keys are on the desk.', 'Anahtarlar masanın üzerinde.'),
+    'be': ('I want to be a teacher.', 'Öğretmen olmak istiyorum.'),
+    'have': ('I have two brothers.', 'İki erkek kardeşim var.'),
+    'this': ('This is my first time here.', 'Burada ilk kez bulunuyorum.'),
+    'from': ('I am from Turkey.', 'Türkiye\'den geliyorum.'),
+    'time': ('What time is it?', 'Saat kaç?'),
+    'water': ('Please give me a glass of water.', 'Lütfen bana bir bardak su verin.'),
+    'call': ('I will call you tomorrow.', 'Yarın seni arayacağım.'),
+    'day': ('Have a nice day!', 'İyi günler!'),
+    'make': ('She can make a cake.', 'Pasta yapabilir.'),
+    'go': ('Let\'s go to the cinema.', 'Sinemaya gidelim.'),
+    'see': ('I see a bird in the sky.', 'Gökyüzünde bir kuş görüyorum.'),
+    'number': ('What is your phone number?', 'Telefon numaranız nedir?'),
+    'way': ('Which way is the station?', 'İstasyon hangi yönde?'),
+    'find': ('I cannot find my keys.', 'Anahtarlarımı bulamıyorum.'),
+    'long': ('How long does it take?', 'Ne kadar sürer?'),
+    'first': ('This is my first visit.', 'Bu benim ilk ziyaretim.'),
+    'electronic': ('I bought an electronic device.', 'Elektronik bir cihaz aldım.'),
+    'word': ('Learn a new word every day.', 'Her gün yeni bir kelime öğren.'),
+    'learn': ('I want to learn German.', 'Almanca öğrenmek istiyorum.'),
+    'practice': ('Practice makes perfect.', 'Alıştırma mükemmelleştirir.'),
+    'hello': ('Hello, how are you?', 'Merhaba, nasılsın?'),
+    'good': ('That sounds good.', 'Kulağa iyi geliyor.'),
+    'book': ('I am reading a book.', 'Bir kitap okuyorum.'),
+    'school': ('She goes to school by bus.', 'Okula otobüsle gidiyor.'),
+    'work': ('I work from home.', 'Evden çalışıyorum.'),
+    'home': ('I am at home now.', 'Şimdi evdeyim.'),
+    'english': ('English is a global language.', 'İngilizce küresel bir dildir.'),
+    'language': ('She speaks three languages.', 'Üç dil konuşuyor.'),
+    'carefully': ('Listen carefully.', 'Dikkatlice dinle.'),
+  };
 }
 
 /// 3D katmanlı mavi kart stack — tüm kelime kartları için ortak.
@@ -169,6 +249,12 @@ class WordCard3D extends StatelessWidget {
   }
 }
 
+/// İlk harfi büyük yapar (kart metinleri için).
+String _capitalizeFirst(String s) {
+  if (s.isEmpty) return s;
+  return s[0].toUpperCase() + s.substring(1);
+}
+
 /// Kelime kartı standart içerik — word, phonetic, translations, quote, examples, hint, Save/Listen.
 class WordCardBody extends StatelessWidget {
   const WordCardBody({
@@ -193,6 +279,11 @@ class WordCardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // "Tebrikler" kartında alttaki çeviri seçilen uygulama dilinde gösterilir
+    final String translationText = data.word.trim().toLowerCase() == 'tebrikler'
+        ? 'word_practice.card_tebrikler'.tr()
+        : (data.translations.trim().isEmpty ? '—' : data.translations);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
       child: Column(
@@ -205,48 +296,48 @@ class WordCardBody extends StatelessWidget {
             ),
           if (showHint) const SizedBox(height: 8),
           Text(
-            data.word,
+            _capitalizeFirst(data.word),
             textAlign: TextAlign.center,
             style: savedWordStyle
                 ? GoogleFonts.quicksand(
                     fontWeight: FontWeight.w700,
                     fontSize: 40,
-                    color: Colors.white,
+                    color: WordCardTheme.cardTextWhite,
                   )
                 : GoogleFonts.quicksand(
-                    color: Colors.white,
+                    color: WordCardTheme.cardTextWhite,
                     fontSize: 28,
                     fontWeight: FontWeight.w700,
                   ),
           ),
           const SizedBox(height: 4),
           Text(
-            data.phonetic,
+            WordService.ipaToPlain(data.phonetic),
             textAlign: TextAlign.center,
             style: savedWordStyle
-                ? GoogleFonts.quicksand(
+                ? GoogleFonts.nunitoSans(
                     fontWeight: FontWeight.w400,
-                    color: const Color(0xFFFFFFFF),
+                    color: WordCardTheme.cardTextWhite,
                     fontSize: 15,
                   )
-                : GoogleFonts.quicksand(
-                    color: const Color(0xFFFFFFFF),
-                    fontSize: 14,
+                : GoogleFonts.nunitoSans(
                     fontWeight: FontWeight.w400,
+                    color: WordCardTheme.cardTextWhite,
+                    fontSize: 14,
                   ),
           ),
           const SizedBox(height: 8),
           Text(
-            data.translations,
+            _capitalizeFirst(translationText),
             textAlign: TextAlign.center,
             style: savedWordStyle
                 ? GoogleFonts.quicksand(
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: WordCardTheme.cardTextWhite,
                     fontSize: 16,
                   )
                 : GoogleFonts.quicksand(
-                    color: Colors.white,
+                    color: WordCardTheme.cardTextWhite,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -256,7 +347,7 @@ class WordCardBody extends StatelessWidget {
             child: Text(
               '\u201C',
               style: GoogleFonts.quicksand(
-                color: const Color(0xFFFFFFFF),
+                color: WordCardTheme.cardTextWhite,
                 fontSize: 48,
                 height: 1,
                 fontWeight: FontWeight.w700,
@@ -265,21 +356,25 @@ class WordCardBody extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            data.exampleEn,
+            data.exampleEn.trim().isEmpty
+                ? '—'
+                : '\u201C${_capitalizeFirst(data.exampleEn)}\u201D',
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: WordCardTheme.cardTextWhite,
               fontSize: 15,
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            data.exampleTr,
+            data.exampleTr.trim().isEmpty
+                ? '—'
+                : _capitalizeFirst(data.exampleTr),
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
               fontWeight: FontWeight.w400,
-              color: const Color(0xFFFFFFFF),
+              color: WordCardTheme.cardTextWhite,
               fontSize: 14,
             ),
           ),
@@ -333,12 +428,12 @@ class WordCardReadingTestBody extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            phonetic,
+            WordService.ipaToPlain(phonetic),
             textAlign: TextAlign.center,
-            style: GoogleFonts.quicksand(
-              color: const Color(0xFFFFFFFF),
-              fontSize: 15,
+            style: GoogleFonts.nunitoSans(
               fontWeight: FontWeight.w400,
+              color: WordCardTheme.cardTextWhite,
+              fontSize: 15,
             ),
           ),
           const SizedBox(height: 45),

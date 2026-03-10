@@ -1,0 +1,109 @@
+{
+  "app_name": "Lingola",
+  "fill blank": "빈칸을 채우세요.",
+  "common": {
+    "ok": "확인",
+    "cancel": "취소",
+    "save": "저장",
+    "delete": "삭제",
+    "next": "다음",
+    "back": "뒤로",
+    "skip": "건너뛰기",
+    "done": "완료",
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다"
+  },
+  "word_practice": {
+    "title": "단어 연습",
+    "retry": "다시 시도",
+    "no_words": "이 트랙에는 아직 단어가 없습니다.",
+    "words_load_error": "단어 목록을 불러올 수 없습니다",
+    "connection_error": "서버에 연결할 수 없습니다. 인터넷과 백엔드 실행 여부를 확인하세요.",
+    "saved": "저장됨",
+    "save_word": "단어 저장",
+    "listen": "들기",
+    "card_tebrikler": "축하합니다"
+  },
+  "saved_word": {
+    "title": "저장된 단어",
+    "empty_title": "저장된 단어가 없습니다",
+    "empty_subtitle": "연습에서 단어를 저장하면\n여기서 복습할 수 있습니다."
+  },
+  "tutorial": {
+    "previous": "이전",
+    "next": "다음",
+    "swipe_finger": "손가락으로 스와이프"
+  },
+  "languages": {
+    "english": "영어",
+    "german": "독일어",
+    "italian": "이탈리아어",
+    "french": "프랑스어",
+    "japanese": "일본어",
+    "spanish": "스페인어",
+    "russian": "러시아어",
+    "turkish": "터키어",
+    "korean": "한국어",
+    "hindi": "힌디어",
+    "portuguese": "포르투갈어"
+  },
+  "nav": {
+    "home": "홈",
+    "learn": "학습",
+    "library": "라이브러리",
+    "profile": "프로필"
+  },
+  "home": {
+    "hello_user": "안녕하세요, {}님",
+    "continue_to_language": "{} 계속하기",
+    "quick_actions": "빠른 작업",
+    "level_beginner": "A1-초급",
+    "premium_badge": "프리미엄",
+    "free_badge": "무료",
+    "learn_new_words_title": "새 단어\n배우기",
+    "learn_new_words_subtitle": "선택한 언어로\n단어 연습.",
+    "mfut_title": "자주 쓰는\n용어",
+    "mfut_subtitle": "가장 자주 쓰는\n용어 보기",
+    "get_premium": "프리미엄 받기",
+    "get_premium_title": "업계 최고가 되세요",
+    "get_premium_subtitle": "전문 어휘 학습 및 복습\n무제한 이용",
+    "continue_lesson": "레슨 계속",
+    "business_negotiations": "비즈니스 협상",
+    "saved_word_title": "저장된\n단어",
+    "saved_word_count": "{}개 단어",
+    "dictionary_title": "사전",
+    "dictionary_subtitle": "단어 검색"
+  },
+  "daily_test": {
+    "title": "테스트",
+    "fill blank": "빈칸을 채우세요.",
+    "retry": "다시 시도",
+    "no_words_min": "테스트에 최소 4개 단어가 필요합니다.",
+    "no_words_empty": "단어가 부족합니다. 트랙을 선택하거나 단어를 추가하세요.",
+    "load_error": "단어 목록을 불러올 수 없습니다",
+    "test_complete": "테스트 완료! {}개 맞음, {} XP 획득."
+  },
+  "learn": {
+    "title": "학습",
+    "hello_user": "안녕하세요, {}님",
+    "subtitle": "실력을 업그레이드해 보세요.",
+    "learning_content": "학습 콘텐츠",
+    "word_practice": "단어 연습",
+    "words_count": "단어",
+    "words_20k": "20.000+",
+    "daily_test": "데일리 테스트",
+    "fill blank": "빈칸을 채우세요.",
+    "business_english": "비즈니스\n영어",
+    "continue_test": "테스트 계속",
+    "reading_test": "리딩 테스트",
+    "business_negotiation": "비즈니스\n협상",
+    "saved_word": "저장된 단어",
+    "saved_word_subtitle": "저장한 단어를\n복습하세요",
+    "saved_word_count": "{}개 단어 저장됨"
+  },
+  "profile": { "title": "프로필", "version": "버전 2.1.0", "premium": "프리미엄", "free": "무료", "xp": "XP", "profile_settings": "프로필 설정", "notifications": "알림", "premium_menu": "프리미엄", "share_with_friend": "친구와 공유", "faq": "자주 묻는 질문", "rate_us": "평가하기", "backend_test": "백엔드 테스트", "sign_out": "로그아웃", "sign_out_confirm": "로그아웃하시겠습니까?", "backend_testing": "백엔드 테스트 중...", "backend_ok": "백엔드 OK", "backend_error": "백엔드 오류", "unknown_error": "알 수 없는 오류" },
+  "profile_settings": { "title": "프로필 설정", "full_name": "이름", "enter_name": "이름 입력", "select_language": "언어", "select_app_language": "앱 언어", "select_level": "레벨", "select_profession": "직업", "select": "선택", "take_photo": "사진 촬영", "select_from_gallery": "갤러리", "delete_account": "계정 삭제", "please_enter_name": "이름을 입력하세요", "profile_saved": "프로필이 저장되었습니다", "account_deleted": "계정이 삭제되었습니다", "delete_confirm": "계정을 삭제하시겠습니까?", "i_approve": "동의합니다", "delete": "삭제", "level_a1": "A1 초급", "level_a2": "A2 초급", "level_b1": "B1 중급", "level_b2": "B2 중상급", "level_c1": "C1 고급", "level_c2": "C2 숙련", "profession_legal": "법률", "profession_tech": "기술", "profession_medicine": "의료", "profession_finance": "금융", "profession_marketing": "마케팅", "profession_engineering": "엔지니어링", "profession_education": "교육", "profession_tourism": "관광", "profession_sales": "영업", "profession_support": "고객 지원", "profession_hr": "인사", "profession_entrepreneurship": "창업", "profession_logistics": "물류", "profession_it": "IT" },
+  "library": { "title": "라이브러리", "library_tab": "라이브러리", "dictionary_tab": "사전", "search_hint": "단어 검색...", "filter": "필터", "other": "기타", "no_results": "결과 없음", "filter_academic": "학술", "filter_psychology": "심리학", "filter_business": "비즈니스", "filter_finance": "금융", "filter_technology": "기술", "filter_marketing": "마케팅", "filter_engineering": "공학", "filter_medicine": "의학", "filter_legal": "법률" },
+  "notifications": { "title": "알림", "delete_all": "모두 삭제", "premium_benefits": "프리미엄 혜택", "premium_benefits_desc": "무제한 액세스 등", "no_notifications": "알림이 없습니다", "no_notifications_desc": "새 알림이 여기에 표시됩니다", "delete_all_confirm": "모든 알림을 삭제하시겠습니까?", "notif1_title": "커피 식기 전에!", "notif1_subtitle": "5분 연습이 기다립니다.", "notif2_title": "당신 없인 너무 조용해요...", "notif2_subtitle": "오랜만이에요! 기억을 되살려 볼까요?" },
+  "faq": { "title": "자주 묻는 질문", "q1": "Lingola Job이란?", "a1": "비즈니스 언어를 배우는 앱입니다.", "q2": "일반 언어를 가르치나요?", "a2": "아니요. 비즈니스 어휘와 표현에 집중합니다.", "q3": "어떤 직업에 적합한가요?", "a3": "IT, 마케팅, 금융, 의료, HR 등.", "q4": "제 수준을 모르겠어요", "a4": "앱 내 테스트로 수준이 결정됩니다.", "q5": "초보자도 사용할 수 있나요?", "a5": "네. A1부터 콘텐츠가 있습니다.", "q6": "콘텐츠는 어떻게 준비되나요?", "a6": "실제 비즈니스 시나리오를 바탕으로 합니다.", "q7": "단어만 배우나요?", "a7": "아니요. 문장 구조, 대화, 예시도 있습니다.", "q8": "하루에 얼마나 해야 하나요?", "a8": "하루 10–15분이면 충분합니다.", "q9": "직장에서 쓸 수 있나요?", "a9": "네. 회의, 이메일용 콘텐츠입니다.", "q10": "Lingola Job은 무료인가요?", "a10": "앱은 무료이며, 고급 콘텐츠는 프리미엄입니다." }
+}

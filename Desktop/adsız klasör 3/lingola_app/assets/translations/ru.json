@@ -1,0 +1,109 @@
+{
+  "app_name": "Lingola",
+  "fill blank": "Заполните пропуск.",
+  "common": {
+    "ok": "OK",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "next": "Далее",
+    "back": "Назад",
+    "skip": "Пропустить",
+    "done": "Готово",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка"
+  },
+  "word_practice": {
+    "title": "Практика слов",
+    "retry": "Повторить",
+    "no_words": "В этом треке пока нет слов.",
+    "words_load_error": "Не удалось загрузить список слов",
+    "connection_error": "Не удалось подключиться к серверу. Проверьте интернет и запуск backend.",
+    "saved": "Сохранено",
+    "save_word": "Сохранить слово",
+    "listen": "Слушать",
+    "card_tebrikler": "Поздравляю"
+  },
+  "saved_word": {
+    "title": "Сохранённые слова",
+    "empty_title": "Пока нет сохранённых слов",
+    "empty_subtitle": "Сохраняйте слова из практики,\nчтобы повторять их здесь."
+  },
+  "tutorial": {
+    "previous": "Назад",
+    "next": "Далее",
+    "swipe_finger": "Проведите пальцем"
+  },
+  "languages": {
+    "english": "Английский",
+    "german": "Немецкий",
+    "italian": "Итальянский",
+    "french": "Французский",
+    "japanese": "Японский",
+    "spanish": "Испанский",
+    "russian": "Русский",
+    "turkish": "Турецкий",
+    "korean": "Корейский",
+    "hindi": "Хинди",
+    "portuguese": "Португальский"
+  },
+  "nav": {
+    "home": "Главная",
+    "learn": "Обучение",
+    "library": "Библиотека",
+    "profile": "Профиль"
+  },
+  "home": {
+    "hello_user": "Привет, {}!",
+    "continue_to_language": "Продолжить на {}",
+    "quick_actions": "Быстрые действия",
+    "level_beginner": "A1-Начальный",
+    "premium_badge": "ПРЕМИУМ",
+    "free_badge": "Бесплатно",
+    "learn_new_words_title": "Учить новые\nслова",
+    "learn_new_words_subtitle": "Тренируйте слова на\nвыбранном языке.",
+    "mfut_title": "Часто\nиспользуемые термины",
+    "mfut_subtitle": "Посмотрите самые\nчастые термины.",
+    "get_premium": "Получить Премиум",
+    "get_premium_title": "Будьте лучшим в своей сфере",
+    "get_premium_subtitle": "Безлимитный доступ к изучению и повторению\nпрофессиональной лексики",
+    "continue_lesson": "Продолжить урок",
+    "business_negotiations": "Деловые переговоры",
+    "saved_word_title": "Сохранённые\nслова",
+    "saved_word_count": "{} слов",
+    "dictionary_title": "Словарь",
+    "dictionary_subtitle": "Поиск слова"
+  },
+  "daily_test": {
+    "title": "Тест",
+    "fill blank": "Заполните пропуск.",
+    "retry": "Повторить",
+    "no_words_min": "Для теста нужно минимум 4 слова.",
+    "no_words_empty": "Недостаточно слов. Выберите трек или добавьте слова.",
+    "load_error": "Не удалось загрузить список слов",
+    "test_complete": "Тест завершён! {} правильных, {} XP заработано."
+  },
+  "learn": {
+    "title": "Обучение",
+    "hello_user": "Привет, {}!",
+    "subtitle": "Давайте прокачаем ваши навыки.",
+    "learning_content": "Учебные материалы",
+    "word_practice": "Практика слов",
+    "words_count": "Слова",
+    "words_20k": "20.000+",
+    "daily_test": "Ежедневный тест",
+    "fill blank": "Заполните пропуск.",
+    "business_english": "Деловой\nанглийский",
+    "continue_test": "Продолжить тест",
+    "reading_test": "Тест на чтение",
+    "business_negotiation": "Деловые\nпереговоры",
+    "saved_word": "Сохранённые слова",
+    "saved_word_subtitle": "Повторите слова,\nкоторые вы сохранили",
+    "saved_word_count": "{} сохранённых слов"
+  },
+  "profile": { "title": "Профиль", "version": "Версия 2.1.0", "premium": "Премиум", "free": "Бесплатно", "xp": "XP", "profile_settings": "Настройки профиля", "notifications": "Уведомления", "premium_menu": "Премиум", "share_with_friend": "Поделиться с другом", "faq": "Частые вопросы", "rate_us": "Оцените нас", "backend_test": "Тест бэкенда", "sign_out": "Выйти", "sign_out_confirm": "Выйти из аккаунта?", "backend_testing": "Проверка бэкенда...", "backend_ok": "Бэкенд OK", "backend_error": "Ошибка бэкенда", "unknown_error": "Неизвестная ошибка" },
+  "profile_settings": { "title": "Настройки профиля", "full_name": "Полное имя", "enter_name": "Введите имя", "select_language": "Язык", "select_app_language": "Язык приложения", "select_level": "Уровень", "select_profession": "Профессия", "select": "Выбрать", "take_photo": "Сделать фото", "select_from_gallery": "Галерея", "delete_account": "Удалить аккаунт", "please_enter_name": "Введите имя", "profile_saved": "Профиль сохранён", "account_deleted": "Аккаунт удалён", "delete_confirm": "Удалить аккаунт?", "i_approve": "Подтверждаю", "delete": "Удалить", "level_a1": "A1 Начальный", "level_a2": "A2 Элементарный", "level_b1": "B1 Средний", "level_b2": "B2 Выше среднего", "level_c1": "C1 Продвинутый", "level_c2": "C2 Свободный", "profession_legal": "Юриспруденция", "profession_tech": "Технологии", "profession_medicine": "Медицина", "profession_finance": "Финансы", "profession_marketing": "Маркетинг", "profession_engineering": "Инженерия", "profession_education": "Образование", "profession_tourism": "Туризм", "profession_sales": "Продажи", "profession_support": "Поддержка", "profession_hr": "HR", "profession_entrepreneurship": "Предпринимательство", "profession_logistics": "Логистика", "profession_it": "IT" },
+  "library": { "title": "Библиотека", "library_tab": "Библиотека", "dictionary_tab": "Словарь", "search_hint": "Поиск слова...", "filter": "Фильтр", "other": "Другое", "no_results": "Ничего не найдено", "filter_academic": "Академия", "filter_psychology": "Психология", "filter_business": "Бизнес", "filter_finance": "Финансы", "filter_technology": "Технологии", "filter_marketing": "Маркетинг", "filter_engineering": "Инженерия", "filter_medicine": "Медицина", "filter_legal": "Право" },
+  "notifications": { "title": "Уведомления", "delete_all": "Удалить все", "premium_benefits": "Премиум-возможности", "premium_benefits_desc": "Безлимитный доступ и больше", "no_notifications": "Нет уведомлений", "no_notifications_desc": "Уведомления появятся здесь", "delete_all_confirm": "Удалить все уведомления?", "notif1_title": "Пока кофе не остыл!", "notif1_subtitle": "Всего 5 минут практики ждут вас.", "notif2_title": "Без вас так тихо...", "notif2_subtitle": "Давно не виделись! Освежим память?" },
+  "faq": { "title": "Частые вопросы", "q1": "Что такое Lingola Job?", "a1": "Lingola Job — приложение для профессионального языка.", "q2": "Joblingo учит общий язык?", "a2": "Нет. Фокус на деловой лексике.", "q3": "Для каких профессий?", "a3": "IT, маркетинг, финансы, здравоохранение, HR и др.", "q4": "Не знаю свой уровень?", "a4": "Уровень определяется тестом в приложении.", "q5": "Подходит новичкам?", "a5": "Да. Есть контент с уровня A1.", "q6": "Как готовится контент?", "a6": "На основе реальных бизнес-сценариев.", "q7": "Только словарь?", "a7": "Нет. Также структуры, диалоги и примеры.", "q8": "Сколько времени в день?", "a8": "Достаточно 10–15 минут в день.", "q9": "Пригодится на работе?", "a9": "Да. Контент для встреч и переписки.", "q10": "Lingola Job бесплатен?", "a10": "Приложение бесплатное; есть премиум." }
+}

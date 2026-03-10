@@ -1,0 +1,109 @@
+{
+  "app_name": "Lingola",
+  "fill blank": "Completa el espacio.",
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "next": "Siguiente",
+    "back": "Atrás",
+    "skip": "Omitir",
+    "done": "Hecho",
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error"
+  },
+  "word_practice": {
+    "title": "Práctica de palabras",
+    "retry": "Reintentar",
+    "no_words": "Aún no hay palabras en esta ruta.",
+    "words_load_error": "No se pudo cargar la lista de palabras",
+    "connection_error": "No se pudo conectar al servidor. Compruebe su conexión y que el backend esté en ejecución.",
+    "saved": "Guardado",
+    "save_word": "Guardar palabra",
+    "listen": "Escuchar",
+    "card_tebrikler": "Felicitaciones"
+  },
+  "saved_word": {
+    "title": "Palabras guardadas",
+    "empty_title": "Aún no hay palabras guardadas",
+    "empty_subtitle": "Guarda palabras desde la práctica\npara repasarlas aquí."
+  },
+  "tutorial": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "swipe_finger": "Desliza el dedo"
+  },
+  "languages": {
+    "english": "Inglés",
+    "german": "Alemán",
+    "italian": "Italiano",
+    "french": "Francés",
+    "japanese": "Japonés",
+    "spanish": "Español",
+    "russian": "Ruso",
+    "turkish": "Turco",
+    "korean": "Coreano",
+    "hindi": "Hindi",
+    "portuguese": "Portugués"
+  },
+  "nav": {
+    "home": "Inicio",
+    "learn": "Aprender",
+    "library": "Biblioteca",
+    "profile": "Perfil"
+  },
+  "home": {
+    "hello_user": "Hola {},",
+    "continue_to_language": "Continuar con {}",
+    "quick_actions": "Acciones rápidas",
+    "level_beginner": "A1-Principiante",
+    "premium_badge": "PREMIUM",
+    "free_badge": "Gratis",
+    "learn_new_words_title": "Aprender nuevas\npalabras",
+    "learn_new_words_subtitle": "Practica palabras en\ntu idioma elegido.",
+    "mfut_title": "Términos más\nusados",
+    "mfut_subtitle": "Echa un vistazo a los términos\nmás utilizados.",
+    "get_premium": "Obtener Premium",
+    "get_premium_title": "Destaca en tu sector",
+    "get_premium_subtitle": "Acceso ilimitado para aprender y repasar\nvocabulario profesional",
+    "continue_lesson": "Continuar lección",
+    "business_negotiations": "Negociaciones comerciales",
+    "saved_word_title": "Palabras\nguardadas",
+    "saved_word_count": "{} palabras",
+    "dictionary_title": "Diccionario",
+    "dictionary_subtitle": "Buscar palabra"
+  },
+  "daily_test": {
+    "title": "Test",
+    "fill blank": "Completa el espacio.",
+    "retry": "Reintentar",
+    "no_words_min": "Se necesitan al menos 4 palabras para el test.",
+    "no_words_empty": "No hay suficientes palabras. Selecciona un track o añade palabras.",
+    "load_error": "No se pudo cargar la lista de palabras",
+    "test_complete": "¡Test completado! {} correctas, {} XP ganados."
+  },
+  "learn": {
+    "title": "Aprender",
+    "hello_user": "Hola {},",
+    "subtitle": "Mejoremos tus habilidades.",
+    "learning_content": "Contenido de aprendizaje",
+    "word_practice": "Práctica de palabras",
+    "words_count": "Palabras",
+    "words_20k": "20.000+",
+    "daily_test": "Test diario",
+    "fill blank": "Completa el espacio.",
+    "business_english": "Inglés\nempresarial",
+    "continue_test": "Continuar test",
+    "reading_test": "Test de lectura",
+    "business_negotiation": "Negociación\nempresarial",
+    "saved_word": "Palabras guardadas",
+    "saved_word_subtitle": "Repasa las palabras\nque has guardado",
+    "saved_word_count": "{} palabra(s) guardada(s)"
+  },
+  "profile": { "title": "Perfil", "version": "Versión 2.1.0", "premium": "Premium", "free": "Gratis", "xp": "XP", "profile_settings": "Ajustes del perfil", "notifications": "Notificaciones", "premium_menu": "Premium", "share_with_friend": "Compartir con amigo", "faq": "Preguntas frecuentes", "rate_us": "Valóranos", "backend_test": "Test Backend", "sign_out": "Cerrar sesión", "sign_out_confirm": "¿Seguro que quieres cerrar sesión?", "backend_testing": "Probando backend...", "backend_ok": "Backend OK", "backend_error": "Error Backend", "unknown_error": "Error desconocido" },
+  "profile_settings": { "title": "Ajustes del perfil", "full_name": "Nombre completo", "enter_name": "Introduce tu nombre", "select_language": "Idioma", "select_app_language": "Idioma de la app", "select_level": "Nivel", "select_profession": "Profesión", "select": "Seleccionar", "take_photo": "Tomar foto", "select_from_gallery": "Galería", "delete_account": "Eliminar cuenta", "please_enter_name": "Introduce tu nombre", "profile_saved": "Perfil guardado", "account_deleted": "Cuenta eliminada", "delete_confirm": "¿Eliminar tu cuenta?", "i_approve": "Lo apruebo", "delete": "Eliminar", "level_a1": "A1 Principiante", "level_a2": "A2 Elemental", "level_b1": "B1 Intermedio", "level_b2": "B2 Intermedio alto", "level_c1": "C1 Avanzado", "level_c2": "C2 Competente", "profession_legal": "Legal", "profession_tech": "Tech", "profession_medicine": "Medicina", "profession_finance": "Finanzas", "profession_marketing": "Marketing", "profession_engineering": "Ingeniería", "profession_education": "Educación", "profession_tourism": "Turismo", "profession_sales": "Ventas", "profession_support": "Atención al cliente", "profession_hr": "Recursos humanos", "profession_entrepreneurship": "Emprendimiento", "profession_logistics": "Logística", "profession_it": "Informática" },
+  "library": { "title": "Biblioteca", "library_tab": "Biblioteca", "dictionary_tab": "Diccionario", "search_hint": "Buscar palabra...", "filter": "Filtro", "other": "Otro", "no_results": "Sin resultados", "filter_academic": "Académico", "filter_psychology": "Psicología", "filter_business": "Negocios", "filter_finance": "Finanzas", "filter_technology": "Tecnología", "filter_marketing": "Marketing", "filter_engineering": "Ingeniería", "filter_medicine": "Medicina", "filter_legal": "Legal" },
+  "notifications": { "title": "Notificaciones", "delete_all": "Eliminar todo", "premium_benefits": "Ventajas Premium", "premium_benefits_desc": "Acceso ilimitado y más", "no_notifications": "Sin notificaciones", "no_notifications_desc": "Las notificaciones aparecerán aquí", "delete_all_confirm": "¿Eliminar todas las notificaciones?", "notif1_title": "¡Antes de que se enfríe el café!", "notif1_subtitle": "Solo 5 minutos de práctica te esperan.", "notif2_title": "Sin ti está muy tranquilo...", "notif2_subtitle": "¡Cuánto tiempo! ¿Refrescamos la memoria?" },
+  "faq": { "title": "Preguntas frecuentes", "q1": "¿Qué es Lingola Job?", "a1": "Lingola Job es una app para mejorar el idioma profesional.", "q2": "¿Joblingo enseña idioma general?", "a2": "No. Se centra en vocabulario y expresiones de negocio.", "q3": "¿Para qué profesiones?", "a3": "IT, marketing, finanzas, salud, RR. HH. y más.", "q4": "¿No sé mi nivel?", "a4": "El nivel se determina con el test de la app.", "q5": "¿Los principiantes pueden usarla?", "a5": "Sí. Hay contenido desde A1.", "q6": "¿Cómo se prepara el contenido?", "a6": "Con escenarios y ejemplos profesionales reales.", "q7": "¿Solo vocabulario?", "a7": "No. También estructuras, diálogos y ejemplos.", "q8": "¿Cuánto tiempo al día?", "a8": "10–15 minutos al día bastan.", "q9": "¿Útil en el trabajo?", "a9": "Sí. Contenido para reuniones y correos.", "q10": "¿Lingola Job es gratis?", "a10": "La app es gratuita; hay opciones premium." }
+}

@@ -1,0 +1,5714 @@
+[
+  {
+    "word": "version",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "encoding",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "document",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "org",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "office",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ocument",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "relationships",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "drawingml",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wordprocessing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rawing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wordprocessingml",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "main",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "w10",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "urn",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "microsoft",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "com",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "word",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "w14",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wordml",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wps",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hape",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wpg",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "roup",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "markup",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "compatibility",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "vml",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "math",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "gnorable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "body",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "tyle",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "val",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "aptanm",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "num",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ilvl",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "suppress",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "uto",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "yphens",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "spacing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "before",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "line",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ule",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "auto",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "center",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "onts",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ascii",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "elvetica",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "nsi",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "outline",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "color",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "shd",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "clear",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fill",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ffffff",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "text",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ill",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "solid",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "srgb",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "yperlink",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fld",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "har",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ype",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "begin",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ock",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "instr",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ext",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "space",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "preserve",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "court",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "separate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rtl",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lang",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "east",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sia",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "end",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "type",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rapping",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawyer",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "financial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legitimate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawful",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "judicial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "illegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "justice",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "civil",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "law",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "common",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legality",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "political",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legislation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "moral",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "state",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "medical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "case",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "precedent",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "canon",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "statutory",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "solicitor",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "courts",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ethical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "criminal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rights",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jural",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "code",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hammurabi",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "social",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "tax",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "constitutional",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "tradnl",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "licit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "barrister",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "valid",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "testament",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "constitution",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rule",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "safe",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "regulatory",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "eligible",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawyers",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sharia",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "public",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "parents",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "statute",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "business",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "enforcement",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "official",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "police",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "insurance",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "technical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "compliance",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "government",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "parent",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "aristotle",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "natural",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lord",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "chancellor",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "max",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "weber",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sound",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "contractual",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "antitrust",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "liability",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legislative",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "illegality",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "nammu",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hornbook",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "mao",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "zedong",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "byzantine",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "empire",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "possible",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "policy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "paralegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "juridical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "safety",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "system",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "copyright",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legalities",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "accounting",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "regulation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "decriminalized",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "physical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "contract",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "formal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "professional",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "cultural",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "appellate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "allowed",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawfully",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "punishment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "religious",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "licensing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "juristic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "economic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigating",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "forensic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "corporate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "societal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sue",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "administrative",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jurist",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "tenant",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "finance",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "paperwork",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "acceptable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "proceedings",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "practical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sanctioned",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "normal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "crime",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "security",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "probate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "governmental",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "admin",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "available",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigants",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "attorney",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "privacy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bureaucratic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "health",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ratified",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "philosophical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prison",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigious",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "personal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "corrective",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ethics",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "regulated",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "real",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "money",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "profession",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "immigration",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "right",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "marketing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "constitutes",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "infringement",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "liable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "laws",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "custody",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "libel",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jurisprudence",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "wrangling",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "suing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "birth",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "easy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigated",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "family",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "biological",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "custom",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pro",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bono",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "visa",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fine",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fines",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "monetary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "procedural",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "international",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jurisdiction",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "funds",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "plaintiffs",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "media",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "proper",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "logistical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "logical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "management",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legislature",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "socialist",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "academic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "patent",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigations",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawsuits",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "school",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sub",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "judice",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "extradition",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fiscal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "licensed",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "work",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "risk",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "courtroom",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "paralegals",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "recourse",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "malicious",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prosecution",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "registered",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawsuit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "authority",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "historical",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "correct",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "divorce",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "injunctions",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fair",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "consideration",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "firm",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "institutional",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "scientific",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "reasonable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "review",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "asbestos",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "commercial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "okay",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "accepted",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "union",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ancient",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "greece",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rulings",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "citizenship",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "citizen",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "decriminalised",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "good",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "absolute",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "monarchy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "amnesty",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "contracts",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "control",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "diplomatic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "free",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "guardianship",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "socially",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "military",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "employment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "evidentiary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "seek",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "redress",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "suit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "marriage",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bail",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "declaratory",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "judgment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "babylonian",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fiduciary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "aid",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legally",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "justinian",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "politics",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "recusal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "counsel",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "admissibility",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "first",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "amendment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hint",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "default",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rgerliches",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "gesetzbuch",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "interpretivism",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sued",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "british",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prosecutorial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "culture",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "nuisance",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "counterclaims",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "writs",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigators",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "treatise",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "matrimonial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "codification",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prosecutions",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "torah",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "concept",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "issues",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "federal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "investigation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "complaint",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "appeals",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bureaucracy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "magna",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "carta",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "effectual",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "dispute",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "disputes",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "decree",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "behavior",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "history",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "economics",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legalization",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "society",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "philosophy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "guilt",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fuero",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "shariah",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "leader",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "derogation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "eviction",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "cicero",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "mandamus",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "certiorari",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "nom",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sport",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "contumacy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "notary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "athletics",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "intestate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "civilization",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rhetoric",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "parliament",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sumer",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "demurrer",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "casuistry",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawmaker",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawgiver",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "danelaw",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "stele",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "impoundment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "entrapment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legislate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "transliterated",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sequestration",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "undue",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "alibi",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legislator",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawmaking",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "docket",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "slavery",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "annulment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawly",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "programma",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "demur",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "brocard",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "intralegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "reprieve",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legist",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sociolegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "supreme",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "promulgator",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "subject",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "blawg",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "revertible",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hinduism",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "reversionary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "counterclaim",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "recusation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "judicialize",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "testate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "surrebutter",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "garnishment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "attorn",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawmonger",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "inlagation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "surrejoinder",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "astrolaw",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "matters",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "injudicial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ordered",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "reconvict",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "subrogation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "champerty",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "regarding",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rules",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "counterplea",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jurisconsult",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawgiving",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "extralegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "subornation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "concerning",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "utilitarianism",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "preterlegal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "issue",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "enfeoffment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lawyering",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "scrutiny",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "arguing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "argued",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "decisions",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "terms",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "dealing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "question",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "any",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "disbarment",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "consider",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "relating",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "cyberlaw",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "claims",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "general",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "reasons",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "whether",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "appeal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "seeking",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "argument",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "disclosure",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "unlaw",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pending",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "conduct",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "intervenor",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "considering",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "countersuit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sought",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "requires",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "practices",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "internal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "investigations",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "provision",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "arguments",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "inquiry",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "involving",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "judiciary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "involved",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "certain",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "related",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "questions",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "challenging",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "protection",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "decision",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "instance",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "legitimacy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "charge",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "without",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sociology",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "that",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "concerned",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "establish",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "own",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "intellectual",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "provisions",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "oversight",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "argue",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "interests",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "compensation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "handling",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "arthashastra",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "requiring",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "require",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "maxims",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "equity",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pluralism",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "manusmriti",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "positivism",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "corporation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "deregulation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "privatisation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bargaining",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bill",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "efficiency",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "religion",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "vedas",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "criminology",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "binding",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "order",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "grundnorm",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bible",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "constitutionality",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "scripture",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "analysis",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "equality",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "koran",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "anatole",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "france",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "habeas",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "corpus",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "rich",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "poor",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "alike",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "entry",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "limitation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "immunity",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "gag",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fundamental",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "amicus",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "curia",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "feudal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "lego",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "literary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "maritime",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "unite",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "penal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "department",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "principle",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "blue",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "relation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "magistrate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "riot",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "act",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "special",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "plead",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "client",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pauli",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "exclusion",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hubble",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "next",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "friend",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "mikhail",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bakunin",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sus",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "false",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pretense",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jus",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "cogens",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fifth",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "battle",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "power",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "withering",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "away",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "status",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "land",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "glanville",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "williams",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "superior",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "delicti",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "defense",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "eminent",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "domain",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sexual",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "assault",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "early",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "customary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "municipal",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "moot",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "thurman",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "arnold",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "circumstantial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "evidence",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "liberty",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "duty",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "personam",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "final",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pendens",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "egypt",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fieri",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "facia",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "concur",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "opinion",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "trust",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "deed",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "life",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "estate",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "non",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prosequitur",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sky",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "subpoena",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "duce",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "tecum",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "litigant",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ride",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "circuit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "due",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "process",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "nature",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ultra",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "vires",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "intra",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hang",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jury",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "resist",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "arrest",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "consent",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "peace",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "summary",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "vote",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bench",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "warrant",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "boyle",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "adversarial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "executive",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "learn",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "petit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "branch",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "search",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "venire",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "gravitation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "greek",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "title",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "athenians",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "two",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "treatises",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "athenian",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "democracy",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "salic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "separation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "prevail",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "party",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "roman",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "jure",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "spirit",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "theodosius",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fee",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "justiciable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "black",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "letter",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "probable",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "cause",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "scope",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "trial",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "obiter",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "dictum",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "dark",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "ages",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "kepler",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "maxim",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "obstruction",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "freedom",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "press",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "malta",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "napoleonic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "merchant",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "european",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "solicitors",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "india",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "quran",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "scotland",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "chinese",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "singapore",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "fiqh",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "hong",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "kong",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "pentateuch",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "traditional",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "louisiana",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "republic",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "china",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "qing",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "dynasty",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "chiang",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "kai",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "shek",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "quebec",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "soviet",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "world",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "trade",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "organisation",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "halakha",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "book",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "sect",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "header",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "eference",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "footer",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "orient",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "portrait",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "top",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bottom",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "left",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  },
+  {
+    "word": "bidi",
+    "translation": "",
+    "example": "",
+    "example_translation": "",
+    "level": "b2",
+    "category": "Legal"
+  }
+]

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/View/Onboarding4View/onboarding4_view.dart';
 import 'package:lingola_app/src/navigation/app_routes.dart';
@@ -20,6 +21,17 @@ class Onboarding5Screen extends StatefulWidget {
 
 class _Onboarding5ScreenState extends State<Onboarding5Screen> {
   String? _selectedLevel;
+
+  static const String _keyProfileLevel = 'profile_level';
+
+  Future<void> _saveLevelAndGoNext(BuildContext context) async {
+    final level = _selectedLevel;
+    if (level == null) return;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_keyProfileLevel, level);
+    if (!context.mounted) return;
+    context.go(AppPaths.onboarding6);
+  }
 
   static const _levels = [
     _Level(
@@ -135,7 +147,7 @@ class _Onboarding5ScreenState extends State<Onboarding5Screen> {
                                 borderRadius: BorderRadius.circular(50),
                                 child: InkWell(
                                   onTap: _selectedLevel != null
-                                      ? () => context.go(AppPaths.onboarding6)
+                                      ? () => _saveLevelAndGoNext(context)
                                       : null,
                                   borderRadius: BorderRadius.circular(50),
                                   child: Container(

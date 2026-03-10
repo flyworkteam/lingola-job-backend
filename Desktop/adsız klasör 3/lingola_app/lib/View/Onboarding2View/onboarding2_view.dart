@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/src/theme/colors.dart';
@@ -137,8 +138,15 @@ class _Onboarding2ScreenState extends State<Onboarding2Screen> {
                         ignoring: _selectedProfession == null,
                         child: AppPrimaryButton(
                           label: 'Next',
-                          onPressed: () =>
-                              context.go(AppPaths.onboarding3),
+                          onPressed: () async {
+                            final id = _selectedProfession;
+                            if (id != null && id.isNotEmpty) {
+                              final prefs = await SharedPreferences.getInstance();
+                              await prefs.setString('profile_profession', id);
+                            }
+                            if (!context.mounted) return;
+                            context.go(AppPaths.onboarding3);
+                          },
                         ),
                       ),
                     ),

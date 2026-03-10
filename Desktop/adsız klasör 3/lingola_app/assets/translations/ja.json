@@ -1,0 +1,109 @@
+{
+  "app_name": "Lingola",
+  "fill blank": "空欄を埋めてください。",
+  "common": {
+    "ok": "OK",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "next": "次へ",
+    "back": "戻る",
+    "skip": "スキップ",
+    "done": "完了",
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました"
+  },
+  "word_practice": {
+    "title": "単語練習",
+    "retry": "再試行",
+    "no_words": "このトラックにはまだ単語がありません。",
+    "words_load_error": "単語リストを読み込めませんでした",
+    "connection_error": "サーバーに接続できません。接続とバックエンドの起動を確認してください。",
+    "saved": "保存しました",
+    "save_word": "単語を保存",
+    "listen": "聞く",
+    "card_tebrikler": "おめでとうございます"
+  },
+  "saved_word": {
+    "title": "保存した単語",
+    "empty_title": "保存した単語はまだありません",
+    "empty_subtitle": "練習から単語を保存して\nここで復習しましょう。"
+  },
+  "tutorial": {
+    "previous": "前へ",
+    "next": "次へ",
+    "swipe_finger": "指でスワイプ"
+  },
+  "languages": {
+    "english": "英語",
+    "german": "ドイツ語",
+    "italian": "イタリア語",
+    "french": "フランス語",
+    "japanese": "日本語",
+    "spanish": "スペイン語",
+    "russian": "ロシア語",
+    "turkish": "トルコ語",
+    "korean": "韓国語",
+    "hindi": "ヒンディー語",
+    "portuguese": "ポルトガル語"
+  },
+  "nav": {
+    "home": "ホーム",
+    "learn": "学習",
+    "library": "ライブラリ",
+    "profile": "プロフィール"
+  },
+  "home": {
+    "hello_user": "こんにちは、{}さん",
+    "continue_to_language": "{}を続ける",
+    "quick_actions": "クイックアクション",
+    "level_beginner": "A1-初級",
+    "premium_badge": "プレミアム",
+    "free_badge": "無料",
+    "learn_new_words_title": "新しい単語を\n学ぶ",
+    "learn_new_words_subtitle": "選択した言語で\n単語を練習。",
+    "mfut_title": "よく使う\n用語",
+    "mfut_subtitle": "最もよく使う\n用語を見る",
+    "get_premium": "プレミアムを取得",
+    "get_premium_title": "業界のトップを目指す",
+    "get_premium_subtitle": "プロの語彙を学び復習する\n無制限アクセス",
+    "continue_lesson": "レッスンを続ける",
+    "business_negotiations": "ビジネス交渉",
+    "saved_word_title": "保存した\n単語",
+    "saved_word_count": "{}語",
+    "dictionary_title": "辞書",
+    "dictionary_subtitle": "単語を検索"
+  },
+  "daily_test": {
+    "title": "テスト",
+    "fill blank": "空欄を埋めてください。",
+    "retry": "再試行",
+    "no_words_min": "テストには最低4語必要です。",
+    "no_words_empty": "単語が不足しています。レッスンを選ぶか単語を追加してください。",
+    "load_error": "単語リストを読み込めませんでした",
+    "test_complete": "テスト完了！{}問正解、{} XP獲得。"
+  },
+  "learn": {
+    "title": "学習",
+    "hello_user": "こんにちは、{}さん",
+    "subtitle": "スキルをアップグレードしましょう。",
+    "learning_content": "学習コンテンツ",
+    "word_practice": "単語練習",
+    "words_count": "単語",
+    "words_20k": "20.000+",
+    "daily_test": "デイリーテスト",
+    "fill blank": "空欄を埋めてください。",
+    "business_english": "ビジネス\n英語",
+    "continue_test": "テストを続ける",
+    "reading_test": "リーディングテスト",
+    "business_negotiation": "ビジネス\n交渉",
+    "saved_word": "保存した単語",
+    "saved_word_subtitle": "保存した単語を\n復習しましょう",
+    "saved_word_count": "{}語保存"
+  },
+  "profile": { "title": "プロフィール", "version": "バージョン 2.1.0", "premium": "プレミアム", "free": "無料", "xp": "XP", "profile_settings": "プロフィール設定", "notifications": "通知", "premium_menu": "プレミアム", "share_with_friend": "友達と共有", "faq": "よくある質問", "rate_us": "評価する", "backend_test": "バックエンドテスト", "sign_out": "ログアウト", "sign_out_confirm": "ログアウトしますか？", "backend_testing": "バックエンドをテスト中...", "backend_ok": "バックエンド OK", "backend_error": "バックエンドエラー", "unknown_error": "不明なエラー" },
+  "profile_settings": { "title": "プロフィール設定", "full_name": "氏名", "enter_name": "名前を入力", "select_language": "言語", "select_app_language": "アプリの言語", "select_level": "レベル", "select_profession": "職業", "select": "選択", "take_photo": "写真を撮る", "select_from_gallery": "ギャラリー", "delete_account": "アカウント削除", "please_enter_name": "名前を入力してください", "profile_saved": "プロフィールを保存しました", "account_deleted": "アカウントが削除されました", "delete_confirm": "アカウントを削除しますか？", "i_approve": "同意する", "delete": "削除", "level_a1": "A1 初級", "level_a2": "A2 初級", "level_b1": "B1 中級", "level_b2": "B2 中上級", "level_c1": "C1 上級", "level_c2": "C2 熟練", "profession_legal": "法務", "profession_tech": "テック", "profession_medicine": "医療", "profession_finance": "金融", "profession_marketing": "マーケティング", "profession_engineering": "エンジニアリング", "profession_education": "教育", "profession_tourism": "観光", "profession_sales": "営業", "profession_support": "カスタマーサポート", "profession_hr": "人事", "profession_entrepreneurship": "起業", "profession_logistics": "物流", "profession_it": "IT" },
+  "library": { "title": "ライブラリ", "library_tab": "ライブラリ", "dictionary_tab": "辞書", "search_hint": "単語を検索...", "filter": "フィルター", "other": "その他", "no_results": "結果なし", "filter_academic": "アカデミック", "filter_psychology": "心理学", "filter_business": "ビジネス", "filter_finance": "金融", "filter_technology": "テクノロジー", "filter_marketing": "マーケティング", "filter_engineering": "工学", "filter_medicine": "医学", "filter_legal": "法務" },
+  "notifications": { "title": "通知", "delete_all": "すべて削除", "premium_benefits": "プレミアム特典", "premium_benefits_desc": "無制限アクセスなど", "no_notifications": "通知はまだありません", "no_notifications_desc": "新しい通知がここに表示されます", "delete_all_confirm": "すべての通知を削除しますか？", "notif1_title": "コーヒーが冷める前に！", "notif1_subtitle": "5分の練習が待っています。", "notif2_title": "いないと静か...", "notif2_subtitle": "お久しぶり！記憶をリフレッシュしませんか？" },
+  "faq": { "title": "よくある質問", "q1": "Lingola Jobとは？", "a1": "ビジネス言語を学ぶアプリです。", "q2": "一般語学を教えますか？", "a2": "いいえ。ビジネス向け語彙と表現に特化しています。", "q3": "どの職業向け？", "a3": "IT、マーケティング、金融、医療、人事など。", "q4": "レベルがわかりません", "a4": "アプリ内のテストで判定されます。", "q5": "初心者でも使えますか？", "a5": "はい。A1から対応しています。", "q6": "コンテンツはどう作られていますか？", "a6": "実際のビジネスシーンに基づいています。", "q7": "単語だけですか？", "a7": "いいえ。文型、対話、例文もあります。", "q8": "1日どれくらい？", "a8": "1日10〜15分で十分です。", "q9": "仕事で使えますか？", "a9": "はい。会議やメール向けの内容です。", "q10": "Lingola Jobは無料ですか？", "a10": "アプリは無料。追加コンテンツはプレミアムです。" }
+}

@@ -94,6 +94,13 @@ abstract final class AppTypography {
         color: AppColors.onSurface,
       );
 
+  static TextStyle get bodyMedium => _quicksand(
+        fontSize: 14,
+        fontWeight: weightRegular,
+        height: lineHeightNormal,
+        color: AppColors.onSurface,
+      );
+
   static TextStyle get bodySmall => _quicksand(
         fontSize: 14,
         fontWeight: weightRegular,

@@ -17,11 +17,13 @@ abstract final class AppPaths {
   static const String onboarding5 = '/onboarding5';
   static const String onboarding6 = '/onboarding6';
   static const String onboarding7 = '/onboarding7';
+  static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
   static const String notifications = '/notifications';
   static const String profileSettings = '/profile_settings';
   static const String faq = '/faq';
   static const String mostFrequentlyUsedTerms = '/most_frequently_used_terms';
+  static const String premium = '/premium';
 }
 
 // --- Home (MainScreen)

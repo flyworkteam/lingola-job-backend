@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class LibraryState {
   const LibraryState({
     this.selectedTabIndex = 0,
-    this.selectedFilterIds = const {'Psychology', 'Technology', 'Saved'},
+    this.selectedFilterIds = const {},
     this.favoritedDictionaryWords = const {},
     this.searchQuery = '',
   });

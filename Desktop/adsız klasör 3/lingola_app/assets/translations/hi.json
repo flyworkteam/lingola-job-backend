@@ -1,0 +1,109 @@
+{
+  "app_name": "Lingola",
+  "fill blank": "रिक्त स्थान भरें।",
+  "common": {
+    "ok": "ठीक",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "delete": "हटाएं",
+    "next": "आगे",
+    "back": "वापस",
+    "skip": "छोड़ें",
+    "done": "हो गया",
+    "loading": "लोड हो रहा है...",
+    "error": "एक त्रुटि हुई"
+  },
+  "word_practice": {
+    "title": "शब्द अभ्यास",
+    "retry": "पुनः प्रयास करें",
+    "no_words": "इस ट्रैक में अभी तक कोई शब्द नहीं।",
+    "words_load_error": "शब्द सूची लोड नहीं हो सकी",
+    "connection_error": "सर्वर से कनेक्ट नहीं हो सका। इंटरनेट और बैकएंड चालू होने की जाँच करें।",
+    "saved": "सहेजा गया",
+    "save_word": "शब्द सहेजें",
+    "listen": "सुनें",
+    "card_tebrikler": "बधाई हो"
+  },
+  "saved_word": {
+    "title": "सहेजे गए शब्द",
+    "empty_title": "अभी तक कोई शब्द सहेजा नहीं गया",
+    "empty_subtitle": "अभ्यास से शब्द सहेजें\nयहां दोहराने के लिए।"
+  },
+  "tutorial": {
+    "previous": "पिछला",
+    "next": "अगला",
+    "swipe_finger": "उंगली से स्वाइप करें"
+  },
+  "languages": {
+    "english": "अंग्रेज़ी",
+    "german": "जर्मन",
+    "italian": "इतालवी",
+    "french": "फ्रेंच",
+    "japanese": "जापानी",
+    "spanish": "स्पेनिश",
+    "russian": "रूसी",
+    "turkish": "तुर्की",
+    "korean": "कोरियाई",
+    "hindi": "हिंदी",
+    "portuguese": "पुर्तगाली"
+  },
+  "nav": {
+    "home": "होम",
+    "learn": "सीखें",
+    "library": "लाइब्रेरी",
+    "profile": "प्रोफ़ाइल"
+  },
+  "home": {
+    "hello_user": "नमस्ते {},",
+    "continue_to_language": "{} जारी रखें",
+    "quick_actions": "त्वरित क्रियाएं",
+    "level_beginner": "A1-शुरुआती",
+    "premium_badge": "प्रीमियम",
+    "free_badge": "मुफ्त",
+    "learn_new_words_title": "नए शब्द\nसीखें",
+    "learn_new_words_subtitle": "चुनी हुई भाषा में\nशब्दों का अभ्यास करें।",
+    "mfut_title": "सबसे अधिक इस्तेमाल\nहोने वाले शब्द",
+    "mfut_subtitle": "सबसे अधिक इस्तेमाल होने वाले\nशब्दों पर नज़र डालें।",
+    "get_premium": "प्रीमियम प्राप्त करें",
+    "get_premium_title": "अपने उद्योग में शीर्ष पर रहें",
+    "get_premium_subtitle": "पेशेवर शब्दावली सीखने और दोहराने के लिए\nअसीमित पहुंच",
+    "continue_lesson": "पाठ जारी रखें",
+    "business_negotiations": "व्यावसायिक बातचीत",
+    "saved_word_title": "सहेजे गए\nशब्द",
+    "saved_word_count": "{} शब्द",
+    "dictionary_title": "शब्दकोश",
+    "dictionary_subtitle": "शब्द खोजें"
+  },
+  "daily_test": {
+    "title": "टेस्ट",
+    "fill blank": "रिक्त स्थान भरें।",
+    "retry": "पुनः प्रयास करें",
+    "no_words_min": "टेस्ट के लिए कम से कम 4 शब्द चाहिए।",
+    "no_words_empty": "शब्द पर्याप्त नहीं। पहले ट्रैक चुनें या शब्द जोड़ें।",
+    "load_error": "शब्द सूची लोड नहीं हो सकी",
+    "test_complete": "टेस्ट पूर्ण! {} सही, {} XP अर्जित।"
+  },
+  "learn": {
+    "title": "सीखें",
+    "hello_user": "नमस्ते {},",
+    "subtitle": "अपने कौशल को बढ़ाएं।",
+    "learning_content": "सीखने की सामग्री",
+    "word_practice": "शब्द अभ्यास",
+    "words_count": "शब्द",
+    "words_20k": "20.000+",
+    "daily_test": "दैनिक टेस्ट",
+    "fill blank": "रिक्त स्थान भरें।",
+    "business_english": "व्यावसायिक\nअंग्रेज़ी",
+    "continue_test": "टेस्ट जारी रखें",
+    "reading_test": "रीडिंग टेस्ट",
+    "business_negotiation": "व्यावसायिक\nबातचीत",
+    "saved_word": "सहेजे गए शब्द",
+    "saved_word_subtitle": "सहेजे गए शब्दों का\nपुनरीक्षण करें",
+    "saved_word_count": "{} शब्द सहेजे गए"
+  },
+  "profile": { "title": "प्रोफ़ाइल", "version": "संस्करण 2.1.0", "premium": "प्रीमियम", "free": "मुफ्त", "xp": "XP", "profile_settings": "प्रोफ़ाइल सेटिंग", "notifications": "सूचनाएं", "premium_menu": "प्रीमियम", "share_with_friend": "दोस्त के साथ साझा करें", "faq": "पूछे जाने वाले प्रश्न", "rate_us": "हमें रेट करें", "backend_test": "बैकएंड टेस्ट", "sign_out": "साइन आउट", "sign_out_confirm": "क्या आप लॉग आउट करना चाहते हैं?", "backend_testing": "बैकएंड टेस्ट हो रहा है...", "backend_ok": "बैकएंड OK", "backend_error": "बैकएंड त्रुटि", "unknown_error": "अज्ञात त्रुटि" },
+  "profile_settings": { "title": "प्रोफ़ाइल सेटिंग", "full_name": "पूरा नाम", "enter_name": "अपना नाम दर्ज करें", "select_language": "भाषा", "select_app_language": "ऐप भाषा", "select_level": "स्तर", "select_profession": "पेशा", "select": "चुनें", "take_photo": "फोटो लें", "select_from_gallery": "गैलरी", "delete_account": "खाता हटाएं", "please_enter_name": "कृपया अपना नाम दर्ज करें", "profile_saved": "प्रोफ़ाइल सहेजा गया", "account_deleted": "खाता हटा दिया गया", "delete_confirm": "खाता हटाना है?", "i_approve": "मैं स्वीकार करता हूं", "delete": "हटाएं", "level_a1": "A1 शुरुआती", "level_a2": "A2 प्राथमिक", "level_b1": "B1 मध्यम", "level_b2": "B2 ऊपरी-मध्यम", "level_c1": "C1 उन्नत", "level_c2": "C2 कुशल", "profession_legal": "कानून", "profession_tech": "टेक", "profession_medicine": "चिकित्सा", "profession_finance": "वित्त", "profession_marketing": "मार्केटिंग", "profession_engineering": "इंजीनियरिंग", "profession_education": "शिक्षा", "profession_tourism": "पर्यटन", "profession_sales": "बिक्री", "profession_support": "ग्राहक सेवा", "profession_hr": "मानव संसाधन", "profession_entrepreneurship": "उद्यमिता", "profession_logistics": "लॉजिस्टिक्स", "profession_it": "आईटी" },
+  "library": { "title": "लाइब्रेरी", "library_tab": "लाइब्रेरी", "dictionary_tab": "शब्दकोश", "search_hint": "शब्द खोजें...", "filter": "फ़िल्टर", "other": "अन्य", "no_results": "कोई परिणाम नहीं", "filter_academic": "शैक्षणिक", "filter_psychology": "मनोविज्ञान", "filter_business": "व्यवसाय", "filter_finance": "वित्त", "filter_technology": "प्रौद्योगिकी", "filter_marketing": "मार्केटिंग", "filter_engineering": "इंजीनियरिंग", "filter_medicine": "चिकित्सा", "filter_legal": "कानूनी" },
+  "notifications": { "title": "सूचनाएं", "delete_all": "सभी हटाएं", "premium_benefits": "प्रीमियम लाभ", "premium_benefits_desc": "असीमित एक्सेस और अधिक", "no_notifications": "अभी कोई सूचना नहीं", "no_notifications_desc": "नई सूचनाएं यहां दिखेंगी", "delete_all_confirm": "सभी सूचनाएं हटाएं?", "notif1_title": "कॉफी ठंडी होने से पहले!", "notif1_subtitle": "बस 5 मिनट का अभ्यास आपका इंतजार कर रहा है।", "notif2_title": "आपके बिना कितना शांत...", "notif2_subtitle": "कितना समय हो गया! याददाश्त ताज़ा करें?" },
+  "faq": { "title": "पूछे जाने वाले प्रश्न", "q1": "Lingola Job क्या है?", "a1": "Lingola Job पेशेवर भाषा सीखने का ऐप है।", "q2": "क्या Joblingo सामान्य भाषा सिखाता है?", "a2": "नहीं। यह व्यावसायिक शब्दावली पर केंद्रित है।", "q3": "किन पेशों के लिए?", "a3": "IT, मार्केटिंग, वित्त, स्वास्थ्य, HR और अन्य।", "q4": "मुझे अपना स्तर नहीं पता?", "a4": "ऐप में टेस्ट से स्तर तय होता है।", "q5": "क्या शुरुआती इस्तेमाल कर सकते हैं?", "a5": "हां। A1 से सभी के लिए सामग्री है।", "q6": "सामग्री कैसे तैयार होती है?", "a6": "वास्तविक व्यावसायिक परिदृश्यों पर आधारित।", "q7": "केवल शब्दावली?", "a7": "नहीं। वाक्य, संवाद और उदाहरण भी।", "q8": "रोज कितना समय?", "a8": "रोज 10–15 मिनट काफी है।", "q9": "काम में उपयोग कर सकते हैं?", "a9": "हां। मीटिंग और ईमेल के लिए सामग्री।", "q10": "क्या Lingola Job मुफ्त है?", "a10": "ऐप मुफ्त है; अधिक सामग्री के लिए प्रीमियम।" }
+}

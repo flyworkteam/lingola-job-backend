@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:lingola_app/src/config/app_prefs.dart';
 import 'package:lingola_app/src/navigation/app_routes.dart';
 import 'package:lingola_app/src/theme/colors.dart';
-import 'package:lingola_app/src/theme/spacing.dart';
 import 'package:lingola_app/src/theme/typography.dart';
 
 /// İlk açılışta gösterilen splash ekranı.
@@ -25,7 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateToHome() async {
     await Future<void>.delayed(const Duration(seconds: 4));
     if (!mounted) return;
-    context.go(AppPaths.splashIntro);
+    final completed = await AppPrefs.isOnboardingCompleted();
+    if (!mounted) return;
+    context.go(completed ? AppPaths.home : AppPaths.splashIntro);
   }
 
   @override

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lingola_app/View/Onboarding3View/onboarding3_view.dart';
 import 'package:lingola_app/src/navigation/app_routes.dart';
@@ -21,6 +23,19 @@ class Onboarding4Screen extends StatefulWidget {
 
 class _Onboarding4ScreenState extends State<Onboarding4Screen> {
   String? _selectedLanguage;
+
+  static const String _keyProfileLanguage = 'profile_language';
+  static const String _keyProfileAppLanguage = 'profile_app_language';
+
+  /// Dil id → locale kodu (onboarding seçimi anasayfa ile aynı davransın)
+  static String? _languageIdToLocale(String id) {
+    const m = {
+      'english': 'en', 'german': 'de', 'italian': 'it', 'french': 'fr',
+      'japanese': 'ja', 'spanish': 'es', 'russian': 'ru', 'turkish': 'tr',
+      'korean': 'ko', 'hindi': 'hi', 'portuguese': 'pt',
+    };
+    return m[id];
+  }
 
   static const _languages = [
     _Language(id: 'english', title: 'English', flagAsset: 'assets/bayrak/flag_english.svg'),
@@ -110,8 +125,17 @@ class _Onboarding4ScreenState extends State<Onboarding4Screen> {
                                 borderRadius: BorderRadius.circular(50),
                                 child: InkWell(
                                   onTap: _selectedLanguage != null
-                                      ? () {
+                                      ? () async {
                                           OnboardingState.selectedLanguageId = _selectedLanguage;
+                                          final localeCode = _languageIdToLocale(_selectedLanguage!);
+                                          final prefs = await SharedPreferences.getInstance();
+                                          final selectedId = _selectedLanguage!;
+                                          await prefs.setString(_keyProfileLanguage, selectedId);
+                                          await prefs.setString(_keyProfileAppLanguage, selectedId);
+                                          if (localeCode != null) {
+                                            await context.setLocale(Locale(localeCode));
+                                          }
+                                          if (!context.mounted) return;
                                           context.go(AppPaths.onboarding5);
                                         }
                                       : null,

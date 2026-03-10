@@ -1,16 +1,26 @@
+import 'dart:io' show Platform;
 import 'dart:math' as math;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingola_app/Models/saved_word_item.dart';
+import 'package:lingola_app/Models/word_item.dart';
 import 'package:lingola_app/Riverpod/Providers/all_providers.dart';
+import 'package:lingola_app/Services/word_database_service.dart';
+import 'package:lingola_app/Services/word_services.dart';
+import 'package:lingola_app/src/state/practice_words_store.dart';
 import 'package:lingola_app/src/state/saved_words_store.dart';
 import 'package:lingola_app/src/theme/colors.dart';
 import 'package:lingola_app/src/theme/spacing.dart';
 import 'package:lingola_app/src/theme/typography.dart';
+import 'package:lingola_app/src/utils/user_level.dart';
 import 'package:lingola_app/src/widgets/word_card.dart';
 import 'package:lingola_app/src/widgets/word_card_buttons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Word Practice sayfası — Learn sekmesindeki Word Practice kartına tıklanınca açılır.
 /// Görseldeki gibi flashcard: kelime, okunuş, çeviri, örnek cümle, Save Word / Listen butonları.
@@ -34,32 +44,16 @@ class WordPracticeScreen extends ConsumerStatefulWidget {
 class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
   OverlayEntry? _tutorialOverlay;
 
-  static const List<WordCardData> _cards = [
-    WordCardData(
-      word: 'Friend',
-      phonetic: '/frend/',
-      translations: 'Arkadaş, Dost, Yoldaş',
-      exampleEn: '“A good friend is hard to find.”',
-      exampleTr: 'İyi bir arkadaş bulmak zordur.',
-    ),
-    WordCardData(
-      word: 'Journey',
-      phonetic: '/ˈdʒɜː.ni/',
-      translations: 'Yolculuk, Seyahat',
-      exampleEn: '\u201CThe journey was longer than we expected.\u201D',
-      exampleTr: 'Yolculuk beklediğimizden daha uzundu.',
-    ),
-    WordCardData(
-      word: 'Improve',
-      phonetic: '/ɪmˈpruːv/',
-      translations: 'Geliştirmek, İyileştirmek',
-      exampleEn: '\u201CPractice every day to improve your skills.\u201D',
-      exampleTr: 'Becerilerini geliştirmek için her gün pratik yap.',
-    ),
-  ];
-
+  List<WordCardData>? _cards;
+  bool _loading = true;
+  String? _errorMessage;
   int _currentCardIndex = 0;
   int _lastSwipeDirection = 1; // 1: next, -1: prev
+  final Set<String> _translationRequested = {};
+  final Set<String> _phoneticRequested = {};
+  final Set<String> _exampleRequested = {};
+  FlutterTts? _flutterTts;
+  bool _ttsInitialized = false;
 
   @override
   void initState() {
@@ -67,6 +61,74 @@ class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _insertTutorialOverlay();
       _reportTrackAccess();
+      _loadWords();
+      _initTts();
+    });
+  }
+
+  static const String _keyProfileLevel = 'profile_level';
+
+  Future<void> _loadWords() async {
+    if (!mounted) return;
+    final localeCode = context.locale.languageCode;
+    setState(() {
+      _loading = true;
+      _errorMessage = null;
+    });
+
+    final prefs = await SharedPreferences.getInstance();
+    final userLevel = prefs.getString(_keyProfileLevel);
+
+    List<Map<String, dynamic>> rawList;
+
+    if (widget.trackId == null) {
+      rawList = await WordDatabaseService.getWords();
+      rawList = await WordService.enrichWordsWithTranslations(rawList, localeCode: localeCode);
+    } else {
+      final result = await ref.read(wordRepositoryProvider).getWords(
+            learningTrackId: widget.trackId,
+          );
+      if (result.isOk && (result.data?.isNotEmpty ?? false)) {
+        rawList = result.data!;
+        await PracticeWordsStore.setWords(rawList);
+      } else {
+        rawList = await PracticeWordsStore.getWords();
+        if (rawList.isNotEmpty) {
+          rawList = await WordService.enrichWordsWithTranslations(rawList, localeCode: localeCode);
+        }
+        if (rawList.isEmpty && !result.isOk) {
+          if (!mounted) return;
+          setState(() {
+            _loading = false;
+            _errorMessage = result.error ?? 'word_practice.words_load_error';
+          });
+          return;
+        }
+      }
+    }
+
+    if (rawList.isEmpty && widget.trackId == null) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _errorMessage = 'word_practice.words_load_error';
+      });
+      return;
+    }
+
+    final words = rawList.map((e) => WordItem.fromJson(e)).toList();
+    final filtered = words
+        .where((w) => UserLevel.isAllowedForUser(w.level, userLevel))
+        .toList();
+    final cards = filtered.map((w) => WordCardData.fromWordItem(w)).toList();
+
+    if (!mounted) return;
+    final showError = cards.isEmpty && rawList.isEmpty;
+    setState(() {
+      _cards = cards;
+      _loading = false;
+      _errorMessage = showError ? 'word_practice.words_load_error' : null;
+      _currentCardIndex = 0;
     });
   }
 
@@ -79,7 +141,39 @@ class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
   @override
   void dispose() {
     _removeTutorialOverlay();
+    _flutterTts?.stop();
     super.dispose();
+  }
+
+  Future<void> _initTts() async {
+    if (_ttsInitialized) return;
+    _flutterTts ??= FlutterTts();
+    await _flutterTts!.awaitSpeakCompletion(true);
+    _flutterTts!.setErrorHandler((msg) {
+      if (mounted) {
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          SnackBar(content: Text('Ses hatası: $msg'), behavior: SnackBarBehavior.floating),
+        );
+      }
+    });
+    _ttsInitialized = true;
+  }
+
+  /// Listen butonu: o anki karttaki kelimeyi İngilizce okutur.
+  Future<void> _speakCurrentWord() async {
+    final card = _currentCard;
+    if (card == null || card.word.trim().isEmpty) return;
+    final word = card.word.trim();
+    await _initTts();
+    if (_flutterTts == null) return;
+    await _flutterTts!.setVolume(1.0);
+    await _flutterTts!.setSpeechRate(0.5);
+    try {
+      await _flutterTts!.setLanguage('en-US');
+    } catch (_) {
+      try { await _flutterTts!.setLanguage('en'); } catch (_) {}
+    }
+    await _flutterTts!.speak(word);
   }
 
   void _insertTutorialOverlay() {
@@ -102,25 +196,204 @@ class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
   }
 
   void _goNextCard() {
-    if (_cards.isEmpty) return;
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return;
     setState(() {
       _lastSwipeDirection = 1;
-      _currentCardIndex = (_currentCardIndex + 1) % _cards.length;
+      _currentCardIndex = (_currentCardIndex + 1) % cards.length;
     });
   }
 
   void _goPrevCard() {
-    if (_cards.isEmpty) return;
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return;
     setState(() {
       _lastSwipeDirection = -1;
-      _currentCardIndex = (_currentCardIndex - 1) < 0 ? (_cards.length - 1) : (_currentCardIndex - 1);
+      _currentCardIndex = (_currentCardIndex - 1) < 0 ? (cards.length - 1) : (_currentCardIndex - 1);
     });
   }
 
-  WordCardData get _currentCard => _cards[_currentCardIndex];
+  Future<void> _fetchTranslationForCurrentCard() async {
+    final card = _currentCard;
+    if (card == null || card.translations.trim().isNotEmpty) return;
+    final localeCode = context.locale.languageCode;
+    final translation =
+        await WordService.fetchAndCacheTranslationForLocale(card.word, localeCode);
+    if (!mounted || translation.isEmpty) return;
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return;
+    final idx = _currentCardIndex.clamp(0, cards.length - 1);
+    final c = cards[idx];
+    if (c.word != card.word) return;
+    setState(() {
+      _cards = [
+        ...cards.sublist(0, idx),
+        WordCardData(
+          word: c.word,
+          phonetic: c.phonetic,
+          translations: translation,
+          exampleEn: c.exampleEn,
+          exampleTr: c.exampleTr,
+        ),
+        ...cards.sublist(idx + 1),
+      ];
+    });
+  }
+
+  Future<void> _fetchPhoneticForCurrentCard() async {
+    final card = _currentCard;
+    if (card == null || card.phonetic.trim().isNotEmpty) return;
+    final phonetic = await WordService.fetchAndCachePhonetic(card.word);
+    if (!mounted || phonetic.isEmpty) return;
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return;
+    final idx = _currentCardIndex.clamp(0, cards.length - 1);
+    final c = cards[idx];
+    if (c.word != card.word) return;
+    setState(() {
+      _cards = [
+        ...cards.sublist(0, idx),
+        WordCardData(
+          word: c.word,
+          phonetic: phonetic,
+          translations: c.translations,
+          exampleEn: c.exampleEn,
+          exampleTr: c.exampleTr,
+        ),
+        ...cards.sublist(idx + 1),
+      ];
+    });
+  }
+
+  Future<void> _fetchExampleForCurrentCard() async {
+    final card = _currentCard;
+    if (card == null) return;
+    final localeCode = context.locale.languageCode;
+    final result = await WordService.getExampleForWord(card.word, localeCode);
+    if (!mounted || (result.exampleEn.isEmpty && result.exampleTr.isEmpty)) return;
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return;
+    final idx = _currentCardIndex.clamp(0, cards.length - 1);
+    final c = cards[idx];
+    if (c.word != card.word) return;
+    setState(() {
+      _cards = [
+        ...cards.sublist(0, idx),
+        WordCardData(
+          word: c.word,
+          phonetic: c.phonetic,
+          translations: c.translations,
+          exampleEn: result.exampleEn,
+          exampleTr: result.exampleTr.isNotEmpty ? result.exampleTr : result.exampleEn,
+        ),
+        ...cards.sublist(idx + 1),
+      ];
+    });
+  }
+
+  WordCardData? get _currentCard {
+    final cards = _cards;
+    if (cards == null || cards.isEmpty) return null;
+    return cards[_currentCardIndex.clamp(0, cards.length - 1)];
+  }
 
   void _handleBack() {
     Navigator.of(context).pop(widget.returnToHomeOnPop);
+  }
+
+  static bool _isConnectionError(String? msg) {
+    if (msg == null || msg.isEmpty) return false;
+    final lower = msg.toLowerCase();
+    return lower.contains('istek hatası') ||
+        lower.contains('connection') ||
+        lower.contains('socket') ||
+        lower.contains('failed host') ||
+        lower.contains('network') ||
+        lower.contains('refused') ||
+        lower.contains('unreachable') ||
+        lower.contains('timeout');
+  }
+
+  Widget _buildBody() {
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (_errorMessage != null) {
+      final displayMessage = _isConnectionError(_errorMessage)
+          ? 'word_practice.connection_error'.tr()
+          : (_errorMessage!.startsWith('word_practice.') ? _errorMessage!.tr() : _errorMessage!);
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.xl),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                displayMessage,
+                textAlign: TextAlign.center,
+                style: AppTypography.bodyMedium.copyWith(color: AppColors.onSurfaceVariant),
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              TextButton(
+                onPressed: _loadWords,
+                child: Text('word_practice.retry'.tr()),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    final card = _currentCard;
+    if (card == null) {
+      return Center(
+        child: Text(
+          'word_practice.no_words'.tr(),
+          textAlign: TextAlign.center,
+          style: AppTypography.bodyMedium.copyWith(color: AppColors.onSurfaceVariant),
+        ),
+      );
+    }
+    if (card.translations.trim().isEmpty && !_translationRequested.contains(card.word)) {
+      _translationRequested.add(card.word);
+      WidgetsBinding.instance.addPostFrameCallback((_) => _fetchTranslationForCurrentCard());
+    }
+    if (card.phonetic.trim().isEmpty && !_phoneticRequested.contains(card.word)) {
+      _phoneticRequested.add(card.word);
+      WidgetsBinding.instance.addPostFrameCallback((_) => _fetchPhoneticForCurrentCard());
+    }
+    final exampleKey = '${card.word}|${context.locale.languageCode}';
+    if (!_exampleRequested.contains(exampleKey)) {
+      _exampleRequested.add(exampleKey);
+      WidgetsBinding.instance.addPostFrameCallback((_) => _fetchExampleForCurrentCard());
+    }
+    return WordCard3D(
+      onSwipeLeft: _goPrevCard,
+      onSwipeRight: _goNextCard,
+      childKey: ValueKey<int>(_currentCardIndex),
+      lastSwipeDirection: _lastSwipeDirection,
+      child: WordCardBody(
+        data: card,
+        onSaveWord: () async {
+          final notifier = ref.read(savedWordsProvider);
+          await notifier.add(SavedWordItem(
+            word: card.word,
+            phonetic: card.phonetic,
+            translations: card.translations,
+            exampleEn: card.exampleEn,
+            exampleTr: card.exampleTr,
+          ));
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('word_practice.saved'.tr()),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        },
+        onListen: _speakCurrentWord,
+        onHint: () {},
+      ),
+    );
   }
 
   @override
@@ -157,7 +430,7 @@ class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
         ),
         titleSpacing: 4,
         title: Text(
-          'Word Practice',
+          'word_practice.title'.tr(),
           style: AppTypography.titleLarge.copyWith(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -171,35 +444,7 @@ class _WordPracticeScreenState extends ConsumerState<WordPracticeScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.xl, AppSpacing.xl, 120),
           child: Center(
-            child: WordCard3D(
-              onSwipeLeft: _goPrevCard,
-              onSwipeRight: _goNextCard,
-              childKey: ValueKey<int>(_currentCardIndex),
-              lastSwipeDirection: _lastSwipeDirection,
-              child: WordCardBody(
-                data: _currentCard,
-                onSaveWord: () async {
-                  final card = _currentCard;
-                  final notifier = ref.read(savedWordsProvider);
-                  await notifier.add(SavedWordItem(
-                    word: card.word,
-                    phonetic: card.phonetic,
-                    translations: card.translations,
-                    exampleEn: card.exampleEn,
-                    exampleTr: card.exampleTr,
-                  ));
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Kaydedildi'),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                },
-                onListen: () {},
-                onHint: () {},
-              ),
-            ),
+            child: _buildBody(),
           ),
         ),
       ),
@@ -275,7 +520,7 @@ class _TutorialFullScreenOverlayState extends State<_TutorialFullScreenOverlay>
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Previous',
+                            'tutorial.previous'.tr(),
                             style: AppTypography.caption.copyWith(
                               color: Colors.white,
                               fontSize: 12,
@@ -320,7 +565,7 @@ class _TutorialFullScreenOverlayState extends State<_TutorialFullScreenOverlay>
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Next',
+                            'tutorial.next'.tr(),
                             style: AppTypography.caption.copyWith(
                               color: Colors.white,
                               fontSize: 12,
@@ -333,7 +578,7 @@ class _TutorialFullScreenOverlayState extends State<_TutorialFullScreenOverlay>
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Swipe Finger',
+                  'tutorial.swipe_finger'.tr(),
                   style: AppTypography.title.copyWith(
                     color: Colors.white,
                     fontSize: 18,
