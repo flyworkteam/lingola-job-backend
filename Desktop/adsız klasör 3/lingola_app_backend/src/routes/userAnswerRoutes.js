@@ -34,7 +34,7 @@ router.post(
     is_correct: "boolean",
   }),
   async (req, res) => {
-    const { word_id, user_answer, is_correct, question_type } = req.body;
+    const { word_id, user_answer, question_type } = req.body;
     const userId = req.userId;
     const wordId = parseInt(word_id, 10);
     const isCorrect = req.body.is_correct === true || req.body.is_correct === "true";

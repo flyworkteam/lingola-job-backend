@@ -43,13 +43,18 @@ const languageRoutes = require("./routes/languageRoutes");
 const learningTrackRoutes = require("./routes/learningTrackRoutes");
 const wordRoutes = require("./routes/wordRoutes");
 const userAnswerRoutes = require("./routes/userAnswerRoutes");
+const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/api/users", userRoutes);
 app.use("/api/languages", languageRoutes);
 app.use("/api/learning-tracks", learningTrackRoutes);
 app.use("/api/words", wordRoutes);
 app.use("/api/user-answers", userAnswerRoutes);
+app.use("/api/subscriptions", subscriptionRoutes);
 app.use("/admin", adminRoutes);
+
+const inactivityReminder = require("./jobs/inactivityReminder");
+inactivityReminder.start();
 
 // Yakalanmamış route hataları ve promise rejection → 500, stack sadece development'ta
 app.use((err, req, res, next) => {

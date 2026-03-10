@@ -4,7 +4,7 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 const loadUser = require("../middleware/loadUser");
 const pool = require("../config/db");
-const { success, validationError, notFound, serverError } = require("../lib/response");
+const { success, validationError, notFound, serverError, unauthorized } = require("../lib/response");
 const { validate } = require("../lib/validate");
 
 // Google'dan gelen "name" (örn. "Kadir Karatas") -> first_name, last_name
@@ -22,6 +22,9 @@ function splitDisplayName(name) {
 async function upsertUserAndLog(req, res) {
   const { uid, email, name } = req.user;
   const { first_name, last_name } = splitDisplayName(name || "");
+
+  const existing = await pool.query("SELECT id FROM users WHERE firebase_uid = $1", [uid]);
+  const isNewUser = existing.rows.length === 0;
 
   const result = await pool.query(
     `INSERT INTO users (firebase_uid, email, first_name, last_name, updated_at)
@@ -45,6 +48,18 @@ async function upsertUserAndLog(req, res) {
   console.log("  updated_at:", user.updated_at);
   console.log("----------------------------------------------");
 
+  if (isNewUser) {
+    try {
+      const display = [first_name, last_name].filter(Boolean).join(" ") || email || uid;
+      await pool.query(
+        "INSERT INTO admin_notifications (type, title, message) VALUES ($1, $2, $3)",
+        ["new_user", "Yeni üye kaydoldu", display]
+      );
+    } catch (_) {
+      /* admin_notifications tablosu yoksa sessizce atla */
+    }
+  }
+
   return user;
 }
 
@@ -56,15 +71,6 @@ router.get("/me", (req, res, next) => {
   try {
     const user = await upsertUserAndLog(req, res);
     res.json({ success: true, data: { user }, user }); // data.user + backward compat: user
-  } catch (err) {
-    return serverError(res, err, "DB hatası");
-  }
-});
-
-router.post("/me", authMiddleware, async (req, res) => {
-  try {
-    const user = await upsertUserAndLog(req, res);
-    res.json({ success: true, data: { user }, user });
   } catch (err) {
     return serverError(res, err, "DB hatası");
   }
@@ -106,6 +112,29 @@ router.patch("/me", authMiddleware, async (req, res) => {
       return validationError(res, "INVALID_TRACK", "Geçersiz learning_track_id (track bulunamadı)");
     }
     return serverError(res, err, "DB hatası");
+  }
+});
+
+// POST /api/users/me/activity — uygulama açıldığında çağrılır: last_activity_at güncellenir, opsiyonel fcm_token kaydedilir.
+// Body: { fcm_token?: string }
+router.post("/me/activity", authMiddleware, loadUser, async (req, res) => {
+  try {
+    const { fcm_token } = req.body || {};
+    if (fcm_token != null && typeof fcm_token !== "string") {
+      return validationError(res, "VALIDATION_ERROR", "fcm_token string olmalı");
+    }
+    const token = typeof fcm_token === "string" && fcm_token.trim() ? fcm_token.trim() : null;
+    await pool.query(
+      `UPDATE users
+       SET last_activity_at = NOW(),
+           fcm_token = COALESCE($1, fcm_token),
+           updated_at = NOW()
+       WHERE id = $2`,
+      [token, req.userId]
+    );
+    return success(res, { ok: true });
+  } catch (err) {
+    return serverError(res, err);
   }
 });
 
