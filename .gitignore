@@ -1,6 +1,9 @@
 node_modules/
 .env
+.env.local
 *.log
+coverage/
 .DS_Store
+# Firebase service account (gizli; her ortam kendi dosyasını kullanır)
 src/config/*-firebase-service-account.json
 lingola-backend-firebase-service-account.json
