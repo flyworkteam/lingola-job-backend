@@ -52,7 +52,6 @@ app.use("/api/words", wordRoutes);
 app.use("/api/user-answers", userAnswerRoutes);
 app.use("/api/subscriptions", subscriptionRoutes);
 app.use("/admin", adminRoutes);
-
 const inactivityReminder = require("./jobs/inactivityReminder");
 inactivityReminder.start();
 
@@ -73,7 +72,7 @@ process.on("unhandledRejection", (reason, promise) => {
   console.error("[unhandledRejection]", reason);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3035;
 
 if (require.main === module) {
   app.listen(PORT, () => {
@@ -81,4 +80,4 @@ if (require.main === module) {
   });
 } else {
   module.exports = app;
-}
+  }
