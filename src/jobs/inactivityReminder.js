@@ -1,8 +1,6 @@
-/**
- * Her saat başı çalışır: 24 saatten fazla uygulama açmamış ve FCM token'ı olan
- * kullanıcılara "Seni özledik, devam et!" bildirimi gönderir.
- */
-const pool = require("../config/db");
+// DİKKAT: Buradaki "../config/db" kısmını, MySQL bağlantını oluşturduğun
+// dosyanın adına göre (örneğin "../config/mysql") güncellemelisin.
+const pool = require("../config/mysqlJobDb"); 
 const admin = require("../config/firebase");
 const oneSignal = require("../config/onesignal");
 
@@ -11,18 +9,20 @@ const INACTIVITY_HOURS = 24;
 
 async function run() {
   try {
-    const result = await pool.query(
+    // 🎯 MySQL'de veriler array içinde array (destructuring) olarak döner: [rows]
+    // 🎯 PostgreSQL'e özel olan $1 ve interval işlemleri MySQL uyumlu hale getirildi (DATE_SUB ve ?)
+    const [rows] = await pool.query(
       `SELECT id, fcm_token, last_activity_at, last_reminder_sent_at
        FROM users
        WHERE fcm_token IS NOT NULL
          AND TRIM(fcm_token) != ''
          AND last_activity_at IS NOT NULL
-         AND last_activity_at < NOW() - ($1::text || ' hours')::interval
+         AND last_activity_at < DATE_SUB(NOW(), INTERVAL ? HOUR)
          AND (last_reminder_sent_at IS NULL OR last_reminder_sent_at < last_activity_at)`,
       [INACTIVITY_HOURS]
     );
 
-    for (const row of result.rows) {
+    for (const row of rows) {
       try {
         if (oneSignal.isConfigured()) {
           await oneSignal.sendToSubscriptionIds(
@@ -41,11 +41,13 @@ async function run() {
             apns: { payload: { aps: { contentAvailable: true } } },
           });
         }
+        
+        // 🎯 $1 yerine MySQL'e özel olan ? (soru işareti) kullanıldı
         await pool.query(
-          `UPDATE users SET last_reminder_sent_at = NOW(), updated_at = NOW() WHERE id = $1`,
+          `UPDATE users SET last_reminder_sent_at = NOW(), updated_at = NOW() WHERE id = ?`,
           [row.id]
         );
-        console.log(
+                console.log(
           "[inactivityReminder] Bildirim gonderildi, provider:",
           oneSignal.isConfigured() ? "onesignal" : "firebase",
           "user_id:",
@@ -56,7 +58,8 @@ async function run() {
           err.code === "messaging/invalid-registration-token" ||
           err.code === "messaging/registration-token-not-registered"
         ) {
-          await pool.query(`UPDATE users SET fcm_token = NULL, updated_at = NOW() WHERE id = $1`, [row.id]);
+          // 🎯 $1 yerine ?
+          await pool.query(`UPDATE users SET fcm_token = NULL, updated_at = NOW() WHERE id = ?`, [row.id]);
           console.log("[inactivityReminder] Geçersiz token temizlendi, user_id:", row.id);
         } else {
           console.error("[inactivityReminder] FCM hatası user_id:", row.id, err.message);
